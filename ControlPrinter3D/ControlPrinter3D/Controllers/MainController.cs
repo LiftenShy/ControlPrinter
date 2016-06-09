@@ -11,6 +11,7 @@ namespace ControlPrinter3D.Controllers
         // GET: Main
         public ActionResult MainPage()
         {
+            ViewData["Informathion"] = Request.UserHostAddress;
             return View();
         }
     }
