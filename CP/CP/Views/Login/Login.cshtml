@@ -1,0 +1,37 @@
+﻿@model CP.Models.User
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+</head>
+<body>
+<div>
+    @using (@Html.BeginForm("LoginPost", "Login", FormMethod.Post))
+    {
+        <div>
+            @Html.Label("Enter your name")
+        </div>
+        <div>
+            @Html.EditorFor(u => u.UserName)
+        </div>
+        <div>
+            @Html.Label("Enter your password")
+        </div>
+        <div>
+            @Html.EditorFor(u => u.Password)
+        </div>
+        <input type="submit" value="Login"/>
+    }
+    @using (@Html.BeginForm("LoginOut", "Login", FormMethod.Post))
+    {
+        <input type="submit" value="LogOut"/>
+    }
+</div>
+</body>
+</html>
