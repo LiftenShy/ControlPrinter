@@ -1,4 +1,5 @@
-﻿
+﻿@using System.Security.Permissions
+
 @{
     Layout = null;
 }
@@ -7,15 +8,30 @@
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width"/>
     <title>Login</title>
 </head>
 <body>
 <div>
-    Hello
+    Hello @User.Identity.Name
 </div>
-<div>
-    @Html.ActionLink("Login","Login","Login")
-</div>
+    @using (@Html.BeginForm("IndexPost", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div>
+            <input type="file" name="file" id="file" style="width: 100%;" /> 
+        </div>
+        <div>
+            <input type="submit" value="Upload" class="submit"/>
+        </div>
+    }
+    @if (ViewData["Image"] != null)
+    {
+        <div>
+            <img src="@Url.Content(ViewData["Image"].ToString())"/>
+        </div>
+    }
+    <div>
+        @Html.ActionLink("Login", "Login", "Login")
+    </div>
 </body>
 </html>
