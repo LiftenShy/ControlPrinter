@@ -1,4 +1,4 @@
-﻿@model CP.Models.User
+﻿@model CP.Web.Models.LoginModel
 @{
     Layout = null;
 }
@@ -14,17 +14,17 @@
 <div>
     @using (@Html.BeginForm("LoginPost", "Login", FormMethod.Post))
     {
-        <div>
+        <div id="div1" class="cls1 cls2">
             @Html.Label("Enter your name")
         </div>
         <div>
-            @Html.EditorFor(u => u.UserName)
+            @Html.EditorFor(lm => lm.UserName)
         </div>
         <div>
             @Html.Label("Enter your password")
         </div>
         <div>
-            @Html.EditorFor(u => u.Password)
+            @Html.EditorFor(lm => lm.Password)
         </div>
         <input type="submit" value="Login"/>
     }

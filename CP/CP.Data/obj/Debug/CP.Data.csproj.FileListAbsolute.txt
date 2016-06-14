@@ -1,0 +1,11 @@
+D:\Diplom\CP\CP.Data\bin\Debug\CP.Data.dll.config
+D:\Diplom\CP\CP.Data\bin\Debug\CP.Data.dll
+D:\Diplom\CP\CP.Data\bin\Debug\CP.Data.pdb
+D:\Diplom\CP\CP.Data\bin\Debug\EntityFramework.dll
+D:\Diplom\CP\CP.Data\bin\Debug\EntityFramework.SqlServer.dll
+D:\Diplom\CP\CP.Data\bin\Debug\EntityFramework.xml
+D:\Diplom\CP\CP.Data\bin\Debug\EntityFramework.SqlServer.xml
+D:\Diplom\CP\CP.Data\obj\Debug\CP.Data.Migrations.InitialCreate.resources
+D:\Diplom\CP\CP.Data\obj\Debug\CP.Data.csproj.GenerateResource.Cache
+D:\Diplom\CP\CP.Data\obj\Debug\CP.Data.dll
+D:\Diplom\CP\CP.Data\obj\Debug\CP.Data.pdb

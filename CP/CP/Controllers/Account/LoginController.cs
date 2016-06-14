@@ -1,27 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Web.Security;
-using CP.Models;
+using CP.Web.Models;
 
-namespace CP.Controllers.Account
+namespace CP.Web.Controllers.Account
 {
     public class LoginController : Controller
     {
         // GET: Login
         public ActionResult Login()
         {
-            return View();
+            return this.View();
         }
 
-        public ActionResult LoginPost(User user)
+        public ActionResult LoginPost(LoginModel model)
         {
-            if(Membership.ValidateUser(user.UserName, user.Password))
+            if(Membership.ValidateUser(model.UserName, model.Password))
             {
-                FormsAuthentication.RedirectFromLoginPage(user.UserName, true);
-                return RedirectToRoute(new { controller = "Home", action = "Index" });
+                FormsAuthentication.RedirectFromLoginPage(model.UserName, true);
+                return this.RedirectToRoute(new { controller = "Home", action = "Index" });
             }
             else
             {

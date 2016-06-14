@@ -1,0 +1,11 @@
+D:\Diplom\CP\CP.Security\bin\Debug\CP.Security.dll
+D:\Diplom\CP\CP.Security\bin\Debug\CP.Security.pdb
+D:\Diplom\CP\CP.Security\bin\Debug\CP.Business.dll
+D:\Diplom\CP\CP.Security\bin\Debug\CP.Data.dll
+D:\Diplom\CP\CP.Security\bin\Debug\EntityFramework.dll
+D:\Diplom\CP\CP.Security\bin\Debug\CP.Business.pdb
+D:\Diplom\CP\CP.Security\bin\Debug\CP.Data.pdb
+D:\Diplom\CP\CP.Security\bin\Debug\EntityFramework.xml
+D:\Diplom\CP\CP.Security\obj\Debug\CP.Security.csprojResolveAssemblyReference.cache
+D:\Diplom\CP\CP.Security\obj\Debug\CP.Security.dll
+D:\Diplom\CP\CP.Security\obj\Debug\CP.Security.pdb

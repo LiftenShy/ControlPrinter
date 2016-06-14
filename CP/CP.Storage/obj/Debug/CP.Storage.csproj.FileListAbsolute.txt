@@ -1,0 +1,4 @@
+D:\Diplom\CP\CP.Storage\bin\Debug\CP.Storage.dll
+D:\Diplom\CP\CP.Storage\bin\Debug\CP.Storage.pdb
+D:\Diplom\CP\CP.Storage\obj\Debug\CP.Storage.dll
+D:\Diplom\CP\CP.Storage\obj\Debug\CP.Storage.pdb
