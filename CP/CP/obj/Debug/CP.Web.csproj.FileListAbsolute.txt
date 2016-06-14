@@ -13,6 +13,10 @@ D:\Diplom\CP\CP\bin\roslyn\VBCSCompiler.exe.config
 D:\Diplom\CP\CP\bin\CP.Web.dll.config
 D:\Diplom\CP\CP\bin\CP.Web.dll
 D:\Diplom\CP\CP\bin\CP.Web.pdb
+D:\Diplom\CP\CP\bin\CP.Business.dll
+D:\Diplom\CP\CP\bin\CP.Data.dll
+D:\Diplom\CP\CP\bin\CP.Security.dll
+D:\Diplom\CP\CP\bin\CP.Storage.dll
 D:\Diplom\CP\CP\bin\EntityFramework.dll
 D:\Diplom\CP\CP\bin\EntityFramework.SqlServer.dll
 D:\Diplom\CP\CP\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
@@ -23,6 +27,10 @@ D:\Diplom\CP\CP\bin\System.Web.Razor.dll
 D:\Diplom\CP\CP\bin\System.Web.Webpages.Deployment.dll
 D:\Diplom\CP\CP\bin\System.Web.Webpages.dll
 D:\Diplom\CP\CP\bin\System.Web.Webpages.Razor.dll
+D:\Diplom\CP\CP\bin\CP.Business.pdb
+D:\Diplom\CP\CP\bin\CP.Data.pdb
+D:\Diplom\CP\CP\bin\CP.Security.pdb
+D:\Diplom\CP\CP\bin\CP.Storage.pdb
 D:\Diplom\CP\CP\bin\EntityFramework.xml
 D:\Diplom\CP\CP\bin\EntityFramework.SqlServer.xml
 D:\Diplom\CP\CP\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
@@ -41,11 +49,3 @@ D:\Diplom\CP\CP\bin\ru\System.Web.Mvc.resources.dll
 D:\Diplom\CP\CP\obj\Debug\CP.Web.csprojResolveAssemblyReference.cache
 D:\Diplom\CP\CP\obj\Debug\CP.Web.dll
 D:\Diplom\CP\CP\obj\Debug\CP.Web.pdb
-D:\Diplom\CP\CP\bin\CP.Business.dll
-D:\Diplom\CP\CP\bin\CP.Data.dll
-D:\Diplom\CP\CP\bin\CP.Security.dll
-D:\Diplom\CP\CP\bin\CP.Storage.dll
-D:\Diplom\CP\CP\bin\CP.Business.pdb
-D:\Diplom\CP\CP\bin\CP.Data.pdb
-D:\Diplom\CP\CP\bin\CP.Security.pdb
-D:\Diplom\CP\CP\bin\CP.Storage.pdb

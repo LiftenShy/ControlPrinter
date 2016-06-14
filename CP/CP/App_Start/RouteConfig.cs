@@ -15,7 +15,7 @@ namespace CP.Web
                 "defult",
                 "{controller}/{action}/{id}",
                 new { controller = "Home", action = "Index", id = UrlParameter.Optional },
-                new []{ "CP.Web" }
+                new []{ "CP.Web.Controllers" }
             );
         }
     }

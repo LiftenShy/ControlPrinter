@@ -9,3 +9,4 @@ D:\Diplom\CP\CP.Data\obj\Debug\CP.Data.Migrations.InitialCreate.resources
 D:\Diplom\CP\CP.Data\obj\Debug\CP.Data.csproj.GenerateResource.Cache
 D:\Diplom\CP\CP.Data\obj\Debug\CP.Data.dll
 D:\Diplom\CP\CP.Data\obj\Debug\CP.Data.pdb
+D:\Diplom\CP\CP.Data\obj\Debug\CP.Data.csprojResolveAssemblyReference.cache
