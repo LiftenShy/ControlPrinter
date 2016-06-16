@@ -13,6 +13,7 @@ using CP.Data;
 using CP.Data.Models;
 using  CP.Storage;
 using CP.Web.Models;
+using Newtonsoft.Json;
 
 namespace CP.Web.Controllers
 {
@@ -34,17 +35,20 @@ namespace CP.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult IndexPost(object obj)
+        public ActionResult IndexPost(string name)
         {
-            HttpPostedFileBase fileBase = (HttpPostedFileBase) obj;
-            IFileManager fileManager = new LocalFileManager(this.Server.MapPath(Path.Combine("~/Images/")));
+            using (IRepository<Data.Models.Image> imageRepository = new EfRepository<Data.Models.Image>())
+            {
+                imageRepository.Insert(new Data.Models.Image {NameImage = name,DateLoad = DateTime.Now});
+            }
+            /*IFileManager fileManager = new LocalFileManager(this.Server.MapPath(Path.Combine("~/Images/")));
             fileManager.SaveFile(fileBase.FileName, fileBase.InputStream);
             ImageModel img = new ImageModel
             {
                 FileName = fileBase.FileName,
                 FilePath = this.Server.MapPath(Path.Combine("~/Images/", fileBase.FileName))
-            };
-            return this.View("Index", img);
+            };*/
+            return this.View("Index");
         }
     }
 }

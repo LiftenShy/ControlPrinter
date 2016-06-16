@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
+import android.widget.Toast;
 
 import java.io.File;
 
@@ -13,15 +14,29 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class MainActivity extends Activity {
@@ -39,7 +54,7 @@ public class MainActivity extends Activity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == CAM_REQUEST) {
-            //"http://controlprinter.apphb.com/Home/android"
+            //"http://controlprinter.apphb.com/Home/IndexPost"
 
             final File f = new File("D:\\Diplom\\TakePhoto\\app\\src\\main\\res\\drawable\\pic.jpg");
             //Convert bitmap to byte array
@@ -60,28 +75,23 @@ public class MainActivity extends Activity {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            RequestQueue MyRequestQueue = Volley.newRequestQueue(this);
-            String url = "http://controlprinter.apphb.com/Home/IndexPost";
-            StringRequest MyStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-                @Override
-                public void onResponse(String response) {
-                    //This code is executed if the server responds, whether or not the response contains data.
-                    //The String 'response' contains the server's response.
-                }
-            }, new Response.ErrorListener() { //Create an error listener to handle errors appropriately.
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    //This code is executed if there is an error.
-                }
-            }) {
-                @Override
-                protected Map<String, String> getParams() {
-                    Map<String,String> MyData = new HashMap<String,String>();
-                    MyData.put(f.getName(), String.valueOf(f)); //Add the data you'd like to send to the server.
-                    return MyData;
-                }
-            };
-            MyRequestQueue.add(MyStringRequest);
+            HttpClient httpclient = new DefaultHttpClient();
+            HttpPost httppost = new HttpPost("http://www.yoursite.com/script.php");
+
+            try {
+                // Add your data
+                List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(1);
+                nameValuePairs.add(new BasicNameValuePair("name", "Hello"));
+                httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+
+                // Execute HTTP Post Request
+                HttpResponse response = httpclient.execute(httppost);
+
+            } catch (ClientProtocolException e) {
+                // TODO Auto-generated catch block
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+            }
         }
     }
 
