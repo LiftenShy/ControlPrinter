@@ -14,9 +14,9 @@
         </div>
     }
 }
-@if (Model != null)
+@if(ViewData["str"] != null)
 {
     <div>
-        File upload
+        @ViewData["str"]
     </div>
 }

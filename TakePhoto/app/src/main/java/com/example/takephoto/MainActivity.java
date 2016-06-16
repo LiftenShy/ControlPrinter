@@ -3,42 +3,26 @@ package com.example.takephoto;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.hardware.Camera;
-import android.media.Image;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Log;
-import android.view.SurfaceHolder;
-import android.view.SurfaceView;
 import android.view.View;
+
 import java.io.File;
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.HttpVersion;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.FileEntity;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.params.CoreProtocolPNames;
-import org.apache.http.util.EntityUtils;
 
-import java.io.BufferedOutputStream;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
 import java.io.ByteArrayOutputStream;
-import java.io.DataOutputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.net.HttpURLConnection;
-import java.net.InetAddress;
-import java.net.MalformedURLException;
-import java.net.Socket;
-import java.net.URL;
 import java.net.UnknownHostException;
-
-import org.json.JSONException;
-import org.json.JSONObject;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends Activity {
 
@@ -55,46 +39,49 @@ public class MainActivity extends Activity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == CAM_REQUEST) {
-            BufferedOutputStream bos = null;
-            URL url = null;
+            //"http://controlprinter.apphb.com/Home/android"
+
+            final File f = new File("D:\\Diplom\\TakePhoto\\app\\src\\main\\res\\drawable\\pic.jpg");
+            //Convert bitmap to byte array
+            ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
+            Bitmap bmp = (Bitmap) data.getExtras().get("data");
+            bmp.compress(Bitmap.CompressFormat.JPEG, 0, byteStream);
+            byte[] bitmapdata = byteStream.toByteArray();
+
+            //write the bytes in file
+            FileOutputStream fos = null;
             try {
-                url = new URL("http://localhost:64416/Home");
-                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                connection.setAllowUserInteraction(false);
-                connection.setDoInput(true);
-                connection.setDoOutput(true);
-                connection.setIfModifiedSince(100000);
-                connection.setUseCaches(false);
-                connection.setRequestMethod("POST");
-                connection.setRequestProperty("Content-Type",
-                        "application/x-www-form-urlencoded");
-
-                connection.setRequestProperty("Content-Language", "en-US");
-                connection.getResponseCode();
-
-                Bitmap bmp = (Bitmap) data.getExtras().get("data");
-                ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                bmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
-                byte[] byteArray = stream.toByteArray();
-
-                DataOutputStream wr = new DataOutputStream(connection.getOutputStream());
-
-                wr.write(byteArray);
-                wr.flush();
-                wr.close();
-
-
+                f.createNewFile();
+                fos = new FileOutputStream(f);
+                fos.write(bitmapdata);
+                fos.flush();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
-            } finally {
-                try {
-                    if (bos != null) {
-                        bos.close();
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
             }
+            RequestQueue MyRequestQueue = Volley.newRequestQueue(this);
+            String url = "http://controlprinter.apphb.com/Home/IndexPost";
+            StringRequest MyStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    //This code is executed if the server responds, whether or not the response contains data.
+                    //The String 'response' contains the server's response.
+                }
+            }, new Response.ErrorListener() { //Create an error listener to handle errors appropriately.
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    //This code is executed if there is an error.
+                }
+            }) {
+                @Override
+                protected Map<String, String> getParams() {
+                    Map<String,String> MyData = new HashMap<String,String>();
+                    MyData.put(f.getName(), String.valueOf(f)); //Add the data you'd like to send to the server.
+                    return MyData;
+                }
+            };
+            MyRequestQueue.add(MyStringRequest);
         }
     }
 
