@@ -20,7 +20,6 @@ namespace CP.Web.Controllers
     public class HomeController : Controller
     {
         [Authorize(Roles = "user,admin")]
-        [HttpGet]
         public ActionResult Index()
         {
             /*using (IRepository<Data.Models.Image> imageRepository = new EfRepository<Data.Models.Image>())
