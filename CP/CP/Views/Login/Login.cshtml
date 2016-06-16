@@ -1,16 +1,7 @@
 ﻿@model CP.Web.Models.LoginModel
-@{
-    Layout = null;
-}
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Login</title>
-</head>
-<body>
+<div>
+    @Html.ValidationSummary()
+</div>
 <div>
     @using (@Html.BeginForm("LoginPost", "Login", FormMethod.Post))
     {
@@ -28,10 +19,4 @@
         </div>
         <input type="submit" value="Login"/>
     }
-    @using (@Html.BeginForm("LoginOut", "Login", FormMethod.Post))
-    {
-        <input type="submit" value="LogOut"/>
-    }
 </div>
-</body>
-</html>

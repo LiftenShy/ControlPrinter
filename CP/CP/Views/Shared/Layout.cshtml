@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css"/>
+    @RenderSection("header", false)
+</head>
+
+<body>
+    <nav>
+        <ul class="menu">
+            <li>@Html.ActionLink("Main page", "Index", "Home")</li>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <li class="log">Hello @User.Identity.Name</li>
+                <li class="log">@Html.ActionLink("Login out", "LoginOut", "Login")</li>
+            }
+            else
+            {
+                <li class="log">@Html.ActionLink("Login", "Login", "Login")</li>
+                <li class="log">@Html.ActionLink("Registration", "Registration", "Login")</li>
+            }
+        </ul>
+    </nav>
+    @RenderBody()
+    <footer>@DateTime.Now.Year create by Sergey</footer>
+</body>
+</html>

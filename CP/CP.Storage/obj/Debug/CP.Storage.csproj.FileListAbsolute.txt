@@ -3,3 +3,7 @@ D:\Diplom\CP\CP.Storage\bin\Debug\CP.Storage.pdb
 D:\Diplom\CP\CP.Storage\obj\Debug\CP.Storage.dll
 D:\Diplom\CP\CP.Storage\obj\Debug\CP.Storage.pdb
 D:\Diplom\CP\CP.Storage\obj\Debug\CP.Storage.csprojResolveAssemblyReference.cache
+D:\Diplom\CP\CP.Storage\bin\Debug\CP.Data.dll
+D:\Diplom\CP\CP.Storage\bin\Debug\EntityFramework.dll
+D:\Diplom\CP\CP.Storage\bin\Debug\CP.Data.pdb
+D:\Diplom\CP\CP.Storage\bin\Debug\EntityFramework.xml

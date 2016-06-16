@@ -2,31 +2,52 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Reflection;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Data;
+using System.Net.Mime;
+using CP.Data;
+using CP.Data.Models;
 
 namespace CP.Storage
 {
-    class LocalFileManager : IFileManager
+    public class LocalFileManager : IFileManager
     {
+        private String _basePath;
+        public LocalFileManager(String basePath)
+        {
+            this._basePath = basePath;
+        }
+
         public void SaveFile(String fileName, Byte[] content)
         {
-            throw new NotImplementedException();
+            File.WriteAllBytes(Path.Combine(this._basePath, fileName), content);
         }
 
         public void SaveFile(String fileName, Stream content)
         {
-            throw new NotImplementedException();
+            using (FileStream fileStream = new FileStream(Path.Combine(this._basePath, fileName), FileMode.Create))
+            {
+                content.CopyTo(fileStream);
+                using (IRepository<Image> imageRepository = new EfRepository<Image>())
+                {
+                    imageRepository.Insert(new Image {NameImage = fileName, DateLoad = DateTime.Now});
+                }
+            }
         }
 
         public Byte[] GetFile(String fileName)
         {
-            throw new NotImplementedException();
+            return File.ReadAllBytes(Path.Combine(this._basePath, fileName));
         }
 
         public String GetURI(string fileName)
         {
-            throw new NotImplementedException();
+            return Path.Combine(this._basePath, fileName).Replace(Assembly.GetExecutingAssembly().Location, "~/");
         }
     }
 }

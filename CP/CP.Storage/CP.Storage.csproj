@@ -44,6 +44,12 @@
     <Compile Include="LocalFileManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CP.Data\CP.Data.csproj">
+      <Project>{ab26856e-23f1-4ce9-82ee-9514dffc262a}</Project>
+      <Name>CP.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

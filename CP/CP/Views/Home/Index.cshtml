@@ -1,31 +1,22 @@
-﻿<!DOCTYPE html>
+﻿@model  CP.Web.Models.ImageModel
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width"/>
-    <title>Login</title>
-</head>
 <body>
-<div>
-    Hello @User.Identity.Name
-</div>
-    @using (@Html.BeginForm("IndexPost", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@if (User.IsInRole("admin"))
+{
+    using (@Html.BeginForm("IndexPost", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         <div>
-            <input type="file" name="file" id="file" style="width: 100%;" /> 
+            <input type="file" name="fileBase"/>
         </div>
         <div>
-            <input type="submit" value="Upload" class="submit"/>
+            <input type="submit" value="Take photo" />
         </div>
     }
-    @if (ViewData["Image"] != null)
-    {
-        <div>
-            <img src="@Url.Content(ViewData["Image"].ToString())"/>
-        </div>
-    }
+}
+@if (Model != null)
+{
     <div>
-        @Html.ActionLink("Login", "Login", "Login")
+        File upload
     </div>
+}
 </body>
-</html>

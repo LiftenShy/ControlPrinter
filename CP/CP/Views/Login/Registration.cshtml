@@ -1,0 +1,26 @@
+﻿@model CP.Web.Models.LoginModel
+@section header {
+    <title>Regestration</title>
+}
+
+<div>
+    @Html.ValidationSummary()
+</div>
+<div>
+    @using (@Html.BeginForm("RegistrationPost", "Login", FormMethod.Post))
+    {
+        <div id="div1" class="cls1 cls2">
+            @Html.Label("Enter your name")
+        </div>
+        <div>
+            @Html.EditorFor(lm => lm.UserName)
+        </div>
+        <div>
+            @Html.Label("Enter your password")
+        </div>
+        <div>
+            @Html.EditorFor(lm => lm.Password)
+        </div>
+        <input type="submit" value="Login"/>
+    }
+</div>
