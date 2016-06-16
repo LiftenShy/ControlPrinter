@@ -1,6 +1,7 @@
 ﻿@model  CP.Web.Models.ImageModel
-
-<body>
+@section header {
+    <title>Main page</title>
+}
 @if (User.IsInRole("admin"))
 {
     using (@Html.BeginForm("IndexPost", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
@@ -19,4 +20,3 @@
         File upload
     </div>
 }
-</body>

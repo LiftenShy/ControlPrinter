@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Data.Entity.Core.Objects;
+using System.Linq;
 using System.Web.Mvc;
 using System.Web.Security;
 using CP.Data;
@@ -39,18 +40,21 @@ namespace CP.Web.Controllers.Account
             {
                 if (!userRepository.Table.Any(u => u.UserName == user.UserName))
                 {
-                    User item = new User { UserName = user.UserName, Password = user.Password, RoleId = 1 };
+                    User item = new User {UserName = user.UserName, Password = user.Password, RoleId = 1};
                     userRepository.Insert(item);
                 }
-                this.ModelState.AddModelError(string.Empty,"This name already use, choose another name");
-                return this.View("Registration");
+                else
+                {
+                    this.ModelState.AddModelError(string.Empty, "This name already use, choose another name");
+                }
+                return this.View("Login");
             }
         }
 
         public ActionResult LoginOut()
         {
             FormsAuthentication.SignOut();
-            return this.View("Login");
+            return this.RedirectToAction("Login");
         }
     }
 }
