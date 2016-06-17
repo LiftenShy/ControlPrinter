@@ -13,7 +13,6 @@ using CP.Data;
 using CP.Data.Models;
 using  CP.Storage;
 using CP.Web.Models;
-using Newtonsoft.Json;
 
 namespace CP.Web.Controllers
 {
@@ -22,14 +21,6 @@ namespace CP.Web.Controllers
         [Authorize(Roles = "user,admin")]
         public ActionResult Index()
         {
-            /*using (IRepository<Data.Models.Image> imageRepository = new EfRepository<Data.Models.Image>())
-            {
-                if (imageRepository.Table.Any())
-                {
-                    Data.Models.Image img = imageRepository.GetById(1);
-                    return this.View("Index",new ImageModel { FileName = img.NameImage, FilePath = "~/Images/" + img.NameImage });
-                }
-            }*/
             return this.View();
         }
 
