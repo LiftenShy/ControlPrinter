@@ -3,6 +3,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Mime;
 using System.Net.Sockets;
 using System.Text;
 using System.Web;
@@ -24,11 +25,11 @@ namespace CP.Web.Controllers
             return this.View();
         }
 
-        public ActionResult IndexPost(string name)//HttpPostedFileBase fileBase)
+        public ActionResult IndexPost(byte[] name)//HttpPostedFileBase fileBase)
         {
             using (IRepository<Data.Models.Image> imageRepository = new EfRepository<Data.Models.Image>())
             {
-                imageRepository.Insert(new Data.Models.Image {NameImage = name,DateLoad = DateTime.Now});
+                imageRepository.Insert(new Data.Models.Image {NameImage = name.ToString(),DateLoad = DateTime.Now});
             }
             /*IFileManager fileManager = new LocalFileManager(this.Server.MapPath(Path.Combine("~/Images/")));
             fileManager.SaveFile(fileBase.FileName, fileBase.InputStream);

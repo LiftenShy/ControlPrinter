@@ -23,6 +23,7 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.ByteArrayOutputStream;
@@ -83,18 +84,22 @@ public class MainActivity extends AppCompatActivity {
         }
         new Thread(new Runnable() {
             public void run() {
+                HttpURLConnection conn = null;
                 try {
                     // Defined URL  where to send data
                     URL url = new URL("http://controlprinter.apphb.com/Home/IndexPost");
                     // Send POST data request
-                    URLConnection conn = url.openConnection();
+                    conn = (HttpURLConnection)url.openConnection();
                     conn.setDoOutput(true);
-                    conn.setRequestProperty("name","Hello");
-                    conn.connect();
+                    OutputStream out = new BufferedOutputStream(conn.getOutputStream());
+                    out.write(bitmapdata, 0, bitmapdata.length);
+                    out.close();
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
                 } catch (IOException e) {
                     e.printStackTrace();
+                } finally {
+                    conn.disconnect();
                 }
             }
         }).start();
