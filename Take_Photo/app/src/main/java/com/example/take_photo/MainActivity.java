@@ -86,13 +86,14 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 HttpURLConnection conn = null;
                 try {
-                    // Defined URL  where to send data
                     URL url = new URL("http://controlprinter.apphb.com/Home/IndexPost");
-                    // Send POST data request
-                    conn = (HttpURLConnection)url.openConnection();
+                    conn = (HttpURLConnection) url.openConnection();
+                    conn.setRequestMethod("POST");
                     conn.setDoOutput(true);
+                    conn.setChunkedStreamingMode(bitmapdata.length);
                     OutputStream out = new BufferedOutputStream(conn.getOutputStream());
                     out.write(bitmapdata, 0, bitmapdata.length);
+                    conn.connect();
                     out.close();
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
@@ -100,7 +101,9 @@ public class MainActivity extends AppCompatActivity {
                     e.printStackTrace();
                 } finally {
                     conn.disconnect();
+                    Log.d("Send", "Send on server was succes");
                 }
+
             }
         }).start();
     }

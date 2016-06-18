@@ -24,7 +24,7 @@ namespace CP.Web.Controllers
         {
             return this.View();
         }
-
+        [HttpPost]
         public ActionResult IndexPost(byte[] name)//HttpPostedFileBase fileBase)
         {
             using (IRepository<Data.Models.Image> imageRepository = new EfRepository<Data.Models.Image>())
