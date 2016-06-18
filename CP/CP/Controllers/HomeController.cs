@@ -25,8 +25,8 @@ namespace CP.Web.Controllers
             return this.View();
         }
 
-        [HttpPost]
-        public ActionResult IndexPost(HttpPostedFileBase fileBase)
+
+        public HttpRequest IndexPost(HttpPostedFileBase fileBase)
         {
             IFileManager fileManager = new LocalFileManager(this.Server.MapPath(Path.Combine("~/Images/")));
             fileManager.SaveFile(fileBase.FileName, fileBase.InputStream);
@@ -35,7 +35,7 @@ namespace CP.Web.Controllers
                 FileName = fileBase.FileName,
                 FilePath = this.Server.MapPath(Path.Combine("~/Images/", fileBase.FileName))
             };
-            return this.View("Index");
+            return null;
         }
     }
 }
