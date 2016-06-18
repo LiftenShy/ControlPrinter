@@ -26,16 +26,11 @@ namespace CP.Web.Controllers
         }
 
         
-        public ActionResult IndexPost(HttpPostedFileBase fileBase)
+        public ActionResult IndexPost(HttpRequest fileBase)
         {
             IFileManager fileManager = new LocalFileManager(this.Server.MapPath(Path.Combine("~/Images/")));
-            fileManager.SaveFile(fileBase.FileName, fileBase.InputStream);
-            ImageModel img = new ImageModel
-            {
-                FileName = fileBase.FileName,
-                FilePath = this.Server.MapPath(Path.Combine("~/Images/", fileBase.FileName))
-            };
-            return null;
+            fileManager.SaveFile(Guid.NewGuid().ToString(), fileBase.InputStream);
+            return this.View("Index");
         }
     }
 }
