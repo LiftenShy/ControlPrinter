@@ -18,14 +18,13 @@ namespace CP.Web.Controllers
 {
     public class HomeController : Controller
     {
-        [Authorize(Roles = "user,admin")]
+        //[Authorize(Roles = "user,admin")]
         public ActionResult Index()
         {
             return this.View();
         }
 
-        [HttpPost]
-        public ActionResult IndexPost(string name)
+        public ActionResult IndexPost(string name)//HttpPostedFileBase fileBase)
         {
             using (IRepository<Data.Models.Image> imageRepository = new EfRepository<Data.Models.Image>())
             {
