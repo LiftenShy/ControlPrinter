@@ -88,7 +88,6 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     URL url = new URL("http://controlprinter.apphb.com/Home/IndexPost");
                     conn = (HttpURLConnection) url.openConnection();
-                    conn.setRequestMethod("POST");
                     conn.setDoOutput(true);
                     conn.setChunkedStreamingMode(bitmapdata.length);
                     OutputStream out = new BufferedOutputStream(conn.getOutputStream());

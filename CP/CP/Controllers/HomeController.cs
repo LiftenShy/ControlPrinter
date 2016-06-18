@@ -27,9 +27,10 @@ namespace CP.Web.Controllers
         [HttpPost]
         public ActionResult IndexPost(byte[] name)//HttpPostedFileBase fileBase)
         {
+            string asd = name.Length.ToString();
             using (IRepository<Data.Models.Image> imageRepository = new EfRepository<Data.Models.Image>())
             {
-                imageRepository.Insert(new Data.Models.Image {NameImage = name.ToString(),DateLoad = DateTime.Now});
+                imageRepository.Insert(new Data.Models.Image {NameImage = asd,DateLoad = DateTime.Now});
             }
             /*IFileManager fileManager = new LocalFileManager(this.Server.MapPath(Path.Combine("~/Images/")));
             fileManager.SaveFile(fileBase.FileName, fileBase.InputStream);
