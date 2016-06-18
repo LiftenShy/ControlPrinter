@@ -90,9 +90,10 @@ public class MainActivity extends AppCompatActivity {
                     conn = (HttpURLConnection) url.openConnection();
                     conn.setDoOutput(true);
                     conn.setChunkedStreamingMode(bitmapdata.length);
+                    conn.setRequestMethod("Post");
                     OutputStream out = new BufferedOutputStream(conn.getOutputStream());
-                    out.write(bitmapdata, 0, bitmapdata.length);
                     conn.connect();
+                    out.write(bitmapdata, 0, bitmapdata.length);
                     out.close();
                 } catch (MalformedURLException e) {
                     e.printStackTrace();

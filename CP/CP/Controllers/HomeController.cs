@@ -25,12 +25,16 @@ namespace CP.Web.Controllers
             return this.View();
         }
 
-        
+
         public ActionResult IndexPost(HttpPostedFileBase fileBase)
         {
-            /*IFileManager fileManager = new LocalFileManager(this.Server.MapPath(Path.Combine("~/Images/")));
-            fileManager.SaveFile(Guid.NewGuid().ToString(), fileBase.InputStream);*/
-            return this.View("Index");
+            using (IRepository<Data.Models.Image> imageRepository = new EfRepository<Data.Models.Image>())
+            {
+                imageRepository.Insert(new Data.Models.Image {NameImage = fileBase.FileName, DateLoad = DateTime.Now} );
+            }
+                /*IFileManager fileManager = new LocalFileManager(this.Server.MapPath(Path.Combine("~/Images/")));
+                fileManager.SaveFile(Guid.NewGuid().ToString(), fileBase.InputStream);*/
+                return this.View("Index");
         }
     }
 }
