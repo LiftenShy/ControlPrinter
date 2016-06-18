@@ -24,7 +24,8 @@ namespace CP.Web.Controllers
         {
             return this.View();
         }
-        [HttpPost]
+
+
         public ActionResult IndexPost(byte[] name)//HttpPostedFileBase fileBase)
         {
             string asd = name.Length.ToString();
