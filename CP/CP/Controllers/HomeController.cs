@@ -25,8 +25,8 @@ namespace CP.Web.Controllers
             return this.View();
         }
 
-
-        public HttpRequest IndexPost(HttpPostedFileBase fileBase)
+        
+        public ActionResult IndexPost(HttpPostedFileBase fileBase)
         {
             IFileManager fileManager = new LocalFileManager(this.Server.MapPath(Path.Combine("~/Images/")));
             fileManager.SaveFile(fileBase.FileName, fileBase.InputStream);
