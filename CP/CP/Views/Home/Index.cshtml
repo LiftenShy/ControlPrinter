@@ -14,3 +14,7 @@
         </div>
     }
 }
+@if (Model != null)
+{
+    <img src="@Url.Content(Model.FilePath)" alt="Screen"/>
+}

@@ -23,14 +23,18 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.ByteArrayOutputStream;
+import java.io.DataOutput;
+import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
@@ -66,8 +70,8 @@ public class MainActivity extends AppCompatActivity {
         final File f = new File(getFilesDir(), "pic.jpg");
         //Convert bitmap to byte array
         ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
-        Bitmap bmp = (Bitmap) data.getExtras().get("data");
-        bmp.compress(Bitmap.CompressFormat.JPEG, 0, byteStream);
+        Bitmap bitmap = (Bitmap) data.getExtras().get("data");
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 0, byteStream);
         final byte[] bitmapdata = byteStream.toByteArray();
 
         //write the bytes in file
@@ -83,25 +87,100 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         new Thread(new Runnable() {
+            String boundary =  "*****";
+            String attachmentName = "fileBase";
+            String attachmentFileName = "pic.jpeg";
+            String crlf = "\r\n";
+            String twoHyphens = "--";
             public void run() {
+
+
                 HttpURLConnection conn = null;
                 try {
                     URL url = new URL("http://controlprinter.apphb.com/Home/IndexPost");
                     conn = (HttpURLConnection) url.openConnection();
+                    conn.setUseCaches(false);
                     conn.setDoOutput(true);
-                    conn.setChunkedStreamingMode(bitmapdata.length);
-                    conn.setRequestMethod("Post");
-                    OutputStream out = new BufferedOutputStream(conn.getOutputStream());
-                    conn.connect();
-                    out.write(bitmapdata, 0, bitmapdata.length);
-                    out.close();
+
+                    conn.setRequestMethod("POST");
+                    conn.setRequestProperty("Connection", "Keep-Alive");
+                    conn.setRequestProperty("Cache-Control", "no-cache");
+                    conn.setRequestProperty(
+                            "Content-Type", "multipart/form-data;boundary=" + this.boundary);
+
+                    DataOutputStream request = new DataOutputStream(
+                            conn.getOutputStream());
+
+                    request.writeBytes(this.twoHyphens + this.boundary + this.crlf);
+                    request.writeBytes("Content-Disposition: form-data; name=\"" +
+                            this.attachmentName + "\";filename=\"" +
+                            this.attachmentFileName + "\"" + this.crlf);
+                    request.writeBytes(this.crlf);
+
+
+
+                    request.write(bitmapdata);
+
+                    request.writeBytes(this.crlf);
+                    request.writeBytes(this.twoHyphens + this.boundary +
+                            this.twoHyphens + this.crlf);
+
+                    request.flush();
+                    request.close();
+
+
+                    InputStream responseStream = new
+                            BufferedInputStream(conn.getInputStream());
+
+                    BufferedReader responseStreamReader =
+                            new BufferedReader(new InputStreamReader(responseStream));
+
+                    String line = "";
+                    StringBuilder stringBuilder = new StringBuilder();
+
+                    while ((line = responseStreamReader.readLine()) != null) {
+                        stringBuilder.append(line).append("\n");
+                    }
+                    responseStreamReader.close();
+
+                    String response = stringBuilder.toString();
+
+                    responseStream.close();
+
+                    conn.disconnect();
+
+
+                    /*conn.setRequestMethod("POST");
+                    conn.setDoOutput(true);
+                    conn.setDoInput(true);
+                    conn.setUseCaches(false);
+                    conn.setRequestProperty("Connection", "Keep-Alive");
+                    conn.setRequestProperty("ENCTYPE", "multipart/form-data");
+                    conn.setRequestProperty("Content-Type", "multipart/form-data;boundary=" + boundary);
+                    conn.setRequestProperty("file", f.getAbsolutePath());
+
+                    DataOutputStream dos = new DataOutputStream(conn.getOutputStream());
+                    dos.writeBytes(twoHyphens + boundary + lineEnd);
+                    dos.writeBytes("Content-Disposition: form-data; name=\"file\";filename=\""
+                            + f.getName() + "\"" + lineEnd);*/
+
+                    int serverResponseCode = conn.getResponseCode();
+                    String serverResponseMessage = conn.getResponseMessage();
+
+                    Log.i("uploadFile", "HTTP Response is : "
+                            + serverResponseMessage + ": " + serverResponseCode);
+                    if(serverResponseCode == 200) {
+                        Log.d("SendData","All okay");
+                    }
+                    if(serverResponseCode == 500) {
+                        Log.d("SendData","Not sucsses send");
+                    }
                 } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (ProtocolException e) {
                     e.printStackTrace();
                 } catch (IOException e) {
                     e.printStackTrace();
-                } finally {
-                    conn.disconnect();
-                    Log.d("Send", "Send on server was succes");
                 }
 
             }

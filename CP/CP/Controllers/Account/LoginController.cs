@@ -1,5 +1,4 @@
-﻿using System.Data.Entity.Core.Objects;
-using System.Linq;
+﻿using System.Linq;
 using System.Web.Mvc;
 using System.Web.Security;
 using CP.Data;

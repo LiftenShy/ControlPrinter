@@ -33,10 +33,7 @@ namespace CP.Storage
             using (FileStream fileStream = new FileStream(Path.Combine(this._basePath, fileName), FileMode.Create))
             {
                 content.CopyTo(fileStream);
-                using (IRepository<Image> imageRepository = new EfRepository<Image>())
-                {
-                    imageRepository.Insert(new Image {NameImage = fileName, DateLoad = DateTime.Now});
-                }
+                
             }
         }
 
@@ -47,7 +44,7 @@ namespace CP.Storage
 
         public String GetURI(string fileName)
         {
-            return Path.Combine(this._basePath, fileName).Replace(Assembly.GetExecutingAssembly().Location, "~/");
+            return Path.Combine(this._basePath, fileName);
         }
     }
 }
