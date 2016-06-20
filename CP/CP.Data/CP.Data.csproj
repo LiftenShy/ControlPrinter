@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ControlPrinterDbContext.cs" />
+    <Compile Include="ControlPrinterDbInitializer.cs" />
     <Compile Include="EfRepository.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="Migrations\201606131057163_InitialCreate.cs" />

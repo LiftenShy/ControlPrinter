@@ -7,3 +7,6 @@ D:\Diplom\CP\CP.Storage\bin\Debug\CP.Data.dll
 D:\Diplom\CP\CP.Storage\bin\Debug\EntityFramework.dll
 D:\Diplom\CP\CP.Storage\bin\Debug\CP.Data.pdb
 D:\Diplom\CP\CP.Storage\bin\Debug\EntityFramework.xml
+D:\Diplom\CP\CP.Storage\bin\Debug\CloudinaryDotNet.dll
+D:\Diplom\CP\CP.Storage\bin\Debug\Newtonsoft.Json.dll
+D:\Diplom\CP\CP.Storage\bin\Debug\Newtonsoft.Json.xml

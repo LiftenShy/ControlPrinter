@@ -116,11 +116,7 @@ public class MainActivity extends AppCompatActivity {
                             this.attachmentName + "\";filename=\"" +
                             this.attachmentFileName + "\"" + this.crlf);
                     request.writeBytes(this.crlf);
-
-
-
                     request.write(bitmapdata);
-
                     request.writeBytes(this.crlf);
                     request.writeBytes(this.twoHyphens + this.boundary +
                             this.twoHyphens + this.crlf);
@@ -128,13 +124,10 @@ public class MainActivity extends AppCompatActivity {
                     request.flush();
                     request.close();
 
-
                     InputStream responseStream = new
                             BufferedInputStream(conn.getInputStream());
-
                     BufferedReader responseStreamReader =
                             new BufferedReader(new InputStreamReader(responseStream));
-
                     String line = "";
                     StringBuilder stringBuilder = new StringBuilder();
 
@@ -142,31 +135,13 @@ public class MainActivity extends AppCompatActivity {
                         stringBuilder.append(line).append("\n");
                     }
                     responseStreamReader.close();
-
                     String response = stringBuilder.toString();
-
                     responseStream.close();
-
                     conn.disconnect();
 
 
-                    /*conn.setRequestMethod("POST");
-                    conn.setDoOutput(true);
-                    conn.setDoInput(true);
-                    conn.setUseCaches(false);
-                    conn.setRequestProperty("Connection", "Keep-Alive");
-                    conn.setRequestProperty("ENCTYPE", "multipart/form-data");
-                    conn.setRequestProperty("Content-Type", "multipart/form-data;boundary=" + boundary);
-                    conn.setRequestProperty("file", f.getAbsolutePath());
-
-                    DataOutputStream dos = new DataOutputStream(conn.getOutputStream());
-                    dos.writeBytes(twoHyphens + boundary + lineEnd);
-                    dos.writeBytes("Content-Disposition: form-data; name=\"file\";filename=\""
-                            + f.getName() + "\"" + lineEnd);*/
-
                     int serverResponseCode = conn.getResponseCode();
                     String serverResponseMessage = conn.getResponseMessage();
-
                     Log.i("uploadFile", "HTTP Response is : "
                             + serverResponseMessage + ": " + serverResponseCode);
                     if(serverResponseCode == 200) {

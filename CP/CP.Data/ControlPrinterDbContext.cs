@@ -8,6 +8,7 @@ namespace CP.Data
         public ControlPrinterDbContext()
             : base("name=ControlPrinterDbContext")
         {
+            Database.SetInitializer(new ControlPrinterDbInitializer());
         }
 
         public DbSet<User> Users { get; set; }

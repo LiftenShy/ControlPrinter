@@ -33,7 +33,6 @@ namespace CP.Storage
             using (FileStream fileStream = new FileStream(Path.Combine(this._basePath, fileName), FileMode.Create))
             {
                 content.CopyTo(fileStream);
-                
             }
         }
 

@@ -49,3 +49,6 @@ D:\Diplom\CP\CP\bin\ru\System.Web.Mvc.resources.dll
 D:\Diplom\CP\CP\obj\Debug\CP.Web.csprojResolveAssemblyReference.cache
 D:\Diplom\CP\CP\obj\Debug\CP.Web.dll
 D:\Diplom\CP\CP\obj\Debug\CP.Web.pdb
+D:\Diplom\CP\CP\bin\CloudinaryDotNet.dll
+D:\Diplom\CP\CP\bin\Newtonsoft.Json.dll
+D:\Diplom\CP\CP\bin\Newtonsoft.Json.xml
