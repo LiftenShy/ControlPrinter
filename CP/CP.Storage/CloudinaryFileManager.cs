@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.IO;
 using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
@@ -7,12 +8,14 @@ namespace CP.Storage
 {
     public class CloudinaryFileManager : IFileManager
     {
-
-        private static Account _account = new Account("hhgsh0gzm", "773373475616428", "WqZqAgJI6kPykUdTRWwK_7ECrs8");
-        private Cloudinary _cloudinary = new Cloudinary(_account);
+        private static readonly Account _account = new Account(
+            ConfigurationManager.AppSettings["CloudinaryDotNet.cloud"], 
+            ConfigurationManager.AppSettings["CloudinaryDotNet.apiKey"], 
+            ConfigurationManager.AppSettings["CloudinaryDotNet.apiSecret"]);
+        private readonly Cloudinary _cloudinary = new Cloudinary(_account);
 
         public void SaveFile(String fileName, Byte[] content)
-        {
+        {//MemoryStream
             throw new NotImplementedException();
         }
 

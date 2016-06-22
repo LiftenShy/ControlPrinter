@@ -40,8 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IRoleService.cs" />
-    <Compile Include="IUserService.cs" />
+    <Compile Include="Abstract\IImageService.cs" />
+    <Compile Include="ImageService.cs" />
+    <Compile Include="Abstract\IRoleService.cs" />
+    <Compile Include="Abstract\IServiceBase.cs" />
+    <Compile Include="Abstract\IUserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoleService.cs" />
     <Compile Include="UserService.cs" />
@@ -50,6 +53,10 @@
     <ProjectReference Include="..\CP.Data\CP.Data.csproj">
       <Project>{ab26856e-23f1-4ce9-82ee-9514dffc262a}</Project>
       <Name>CP.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CP.Storage\CP.Storage.csproj">
+      <Project>{bb6eae8f-2d6a-4e61-905c-1029d98d5044}</Project>
+      <Name>CP.Storage</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

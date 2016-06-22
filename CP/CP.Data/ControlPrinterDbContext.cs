@@ -3,7 +3,7 @@ using CP.Data.Models;
 
 namespace CP.Data
 {
-    internal class ControlPrinterDbContext : DbContext
+    public class ControlPrinterDbContext : DbContext
     {
         public ControlPrinterDbContext()
             : base("name=ControlPrinterDbContext")

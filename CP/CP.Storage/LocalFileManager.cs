@@ -18,6 +18,7 @@ namespace CP.Storage
     public class LocalFileManager : IFileManager
     {
         private String _basePath;
+
         public LocalFileManager(String basePath)
         {
             this._basePath = basePath;

@@ -6,21 +6,21 @@
 <div>
     @Html.ValidationSummary()
 </div>
-<div>
+<div class="Auth">
     @using (@Html.BeginForm("RegistrationPost", "Login", FormMethod.Post))
     {
-        <div id="div1" class="cls1 cls2">
+        <div class="field-label">
             @Html.Label("Enter your name")
         </div>
-        <div>
+        <div class="field-edit">
             @Html.EditorFor(lm => lm.UserName)
         </div>
-        <div>
+        <div class="field-label">
             @Html.Label("Enter your password")
         </div>
-        <div>
+        <div class="field-edit">
             @Html.EditorFor(lm => lm.Password)
         </div>
-        <input type="submit" value="Registration"/>
+        <input class="buttonAuth" type="submit" value="Registration"/>
     }
 </div>

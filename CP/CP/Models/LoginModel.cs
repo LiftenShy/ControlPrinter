@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace CP.Web.Models
+﻿namespace CP.Web.Models
 {
     public class LoginModel
     {

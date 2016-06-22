@@ -11,19 +11,14 @@ namespace CP.Data
 {
     public class EfRepository<T> : IRepository<T> where T : EntityBase
     {
-        private readonly ControlPrinterDbContext context;
+        private readonly DbContext context;
         private IDbSet<T> entities;
         string errorMessage = string.Empty;
 
-        internal EfRepository(ControlPrinterDbContext context)
+        public EfRepository(DbContext context)
         {
             this.context = context;
         }
-
-        public EfRepository()
-        {
-            this.context = new ControlPrinterDbContext();
-        } 
 
         public T GetById(object id)
         {
@@ -130,7 +125,10 @@ namespace CP.Data
 
         public void Dispose()
         {
-            this.context.Dispose();
+            if (this.context != null)
+            {
+                this.context.Dispose();
+            }
         }
     }
 }

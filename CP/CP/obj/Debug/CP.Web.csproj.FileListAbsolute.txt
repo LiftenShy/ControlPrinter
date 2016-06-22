@@ -52,3 +52,17 @@ D:\Diplom\CP\CP\obj\Debug\CP.Web.pdb
 D:\Diplom\CP\CP\bin\CloudinaryDotNet.dll
 D:\Diplom\CP\CP\bin\Newtonsoft.Json.dll
 D:\Diplom\CP\CP\bin\Newtonsoft.Json.xml
+D:\Diplom\CP\CP\bin\CP.DependencyResolver.dll
+D:\Diplom\CP\CP\bin\Microsoft.Practices.ServiceLocation.dll
+D:\Diplom\CP\CP\bin\Microsoft.Practices.Unity.Configuration.dll
+D:\Diplom\CP\CP\bin\Microsoft.Practices.Unity.dll
+D:\Diplom\CP\CP\bin\Microsoft.Practices.Unity.Mvc.dll
+D:\Diplom\CP\CP\bin\Microsoft.Practices.Unity.RegistrationByConvention.dll
+D:\Diplom\CP\CP\bin\WebActivatorEx.dll
+D:\Diplom\CP\CP\bin\CP.DependencyResolver.pdb
+D:\Diplom\CP\CP\bin\Microsoft.Practices.ServiceLocation.pdb
+D:\Diplom\CP\CP\bin\Microsoft.Practices.ServiceLocation.xml
+D:\Diplom\CP\CP\bin\Microsoft.Practices.Unity.xml
+D:\Diplom\CP\CP\bin\Microsoft.Practices.Unity.Configuration.xml
+D:\Diplom\CP\CP\bin\Microsoft.Practices.Unity.Mvc.xml
+D:\Diplom\CP\CP\bin\Microsoft.Practices.Unity.RegistrationByConvention.xml

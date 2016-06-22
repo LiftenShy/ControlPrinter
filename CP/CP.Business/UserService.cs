@@ -10,19 +10,42 @@ namespace CP.Business
 {
     public class UserService : IUserService
     {
+        public UserService(IRepository<User> userRepository)
+        {
+            this.UserRepository = userRepository;
+        }
+
+        private IRepository<User> UserRepository { get; set; }
+
         public bool ValidateUser(string userName, string password)
         {
-            using (IRepository<User> useRepository = new EfRepository<User>())
-            {
-                return useRepository.Table.Any(u => u.UserName == userName && u.Password == password);
-            }
+                return this.UserRepository.Table.Any(u => u.UserName == userName && u.Password == password);
         }
 
         public User GetUser(string userName)
         {
-            using (IRepository<User> useRepository = new EfRepository<User>())
+                return this.UserRepository.Table.FirstOrDefault(f => f.UserName == userName);
+        }
+
+        public bool AddUser(User user)
+        {
+            if (!this.UserRepository.Table.Any(u => u.UserName == user.UserName))
             {
-                return useRepository.Table.FirstOrDefault(f => f.UserName == userName);
+                User item = new User {UserName = user.UserName, Password = user.Password, RoleId = 1};
+                this.UserRepository.Insert(item);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public void Dispose()
+        {
+            if (this.UserRepository != null)
+            {
+                this.UserRepository.Dispose();
             }
         }
     }

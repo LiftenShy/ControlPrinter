@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
+using CP.Web.App_Start;
 
 namespace CP.Web
 {
@@ -9,6 +10,7 @@ namespace CP.Web
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            UnityConfig.Initialize();
         }
     }
 }

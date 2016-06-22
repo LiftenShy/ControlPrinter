@@ -14,7 +14,7 @@ namespace CP.Web
             routes.MapRoute(
                 "defult",
                 "{controller}/{action}/{id}",
-                new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+                new { controller = "Home", action = "HomePage", id = UrlParameter.Optional },
                 new []{ "CP.Web.Controllers" }
             );
         }

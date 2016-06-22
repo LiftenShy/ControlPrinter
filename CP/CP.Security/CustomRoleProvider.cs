@@ -1,16 +1,18 @@
 ﻿using System;
 using System.Web.Security;
 using CP.Business;
+using Microsoft.Practices.Unity;
 
 namespace CP.Security
 {
     public class CustomRoleProvider : RoleProvider
     {
-        private IRoleService roleService = new RoleService();
+        [Dependency]
+        public IRoleService RoleService { get; set; }
 
         public override string[] GetRolesForUser(string userName)
         {
-            return this.roleService.GetRolesForUser(userName);
+            return this.RoleService.GetRolesForUser(userName);
         }
 
         public override void CreateRole(string roleName)
@@ -20,7 +22,7 @@ namespace CP.Security
 
         public override bool IsUserInRole(string username, string roleName)
         {
-            return this.roleService.IsUserInRole(username, roleName);
+            return this.RoleService.IsUserInRole(username, roleName);
         }
 
         public override void AddUsersToRoles(string[] usernames, string[] roleNames)
@@ -61,7 +63,15 @@ namespace CP.Security
 
         public override bool RoleExists(string roleName)
         {
-            return this.roleService.RoleExists(roleName);
+            return this.RoleService.RoleExists(roleName);
+        }
+
+        ~CustomRoleProvider()
+        {
+            if (this.RoleService != null)
+            {
+                this.RoleService.Dispose();
+            }
         }
     }
 }

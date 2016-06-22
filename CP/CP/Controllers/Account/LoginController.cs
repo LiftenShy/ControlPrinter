@@ -1,15 +1,18 @@
-﻿using System.Linq;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Web.Security;
-using CP.Data;
+using CP.Business;
 using CP.Data.Models;
 using CP.Web.Models;
+using Microsoft.Practices.Unity;
 
 namespace CP.Web.Controllers.Account
 {
     public class LoginController : Controller
     {
-        // GET: Login
+        [Dependency]
+        public IUserService UserService { get; set; }
+
+
         public ActionResult Login()
         {
             return this.View();
@@ -17,13 +20,14 @@ namespace CP.Web.Controllers.Account
 
         public ActionResult LoginPost(LoginModel model)
         {
-            if(Membership.ValidateUser(model.UserName, model.Password))
+            if (Membership.ValidateUser(model.UserName, model.Password))
             {
                 FormsAuthentication.RedirectFromLoginPage(model.UserName, true);
-                return this.RedirectToRoute(new { controller = "Home", action = "Index" });
+                return this.RedirectToRoute(new {controller = "Home", action = "HomePage"});
             }
             else
             {
+                this.ModelState.AddModelError(string.Empty, "Enter your name or password incorrect");
                 return this.View("Login");
             }
         }
@@ -35,25 +39,27 @@ namespace CP.Web.Controllers.Account
 
         public ActionResult RegistrationPost(LoginModel user)
         {
-            using (IRepository<User> userRepository = new EfRepository<User>())
+            if (this.UserService.AddUser(new User {UserName = user.UserName, Password = user.Password, RoleId = 1}))
             {
-                if (!userRepository.Table.Any(u => u.UserName == user.UserName))
-                {
-                    User item = new User {UserName = user.UserName, Password = user.Password, RoleId = 1};
-                    userRepository.Insert(item);
-                }
-                else
-                {
-                    this.ModelState.AddModelError(string.Empty, "This name already use, choose another name");
-                }
-                return this.View("Login");
+                return this.RedirectToAction("HomePage","Home");
             }
+            this.ModelState.AddModelError(string.Empty, "This name already use, choose another name");
+            return this.View("Registration");
         }
 
-        public ActionResult LoginOut()
+        public void LoginOut()
         {
             FormsAuthentication.SignOut();
-            return this.RedirectToAction("Login");
+            FormsAuthentication.RedirectToLoginPage();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (this.UserService != null)
+            {
+                this.UserService.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
 }

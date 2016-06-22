@@ -10,29 +10,40 @@ namespace CP.Business
 {
     public class RoleService : IRoleService
     {
+        public RoleService(IRepository<User> userRepository, IRepository<Role> roleRepository)
+        {
+            this.UserRepository = userRepository;
+            this.RoleRepository = roleRepository;
+        }
+
+        private IRepository<Role> RoleRepository { get; set; }
+        private IRepository<User> UserRepository { get; set; }
 
         public bool IsUserInRole(string username, string roleName)
         {
-            using (IRepository<User> userRepository = new EfRepository<User>())
-            {
-                return userRepository.Table.Any(u => u.UserName == username && u.Role.NameRole == roleName);
-            }
+            return this.UserRepository.Table.Any(u => u.UserName == username && u.Role.NameRole == roleName);
         }
 
         public bool RoleExists(string roleName)
         {
-            using (IRepository<Role> roleRepository = new EfRepository<Role>())
-            {
-                return roleRepository.Table.Any(r => r.NameRole == roleName);
-            }
+            return this.RoleRepository.Table.Any(r => r.NameRole == roleName);
         }
 
         public string[] GetRolesForUser(string userName)
         {
-            using (IRepository<User> userRepository = new EfRepository<User>())
+            User user = this.UserRepository.Table.First(u => u.UserName == userName);
+            return (new string[] {user.Role.NameRole});
+        }
+
+        public void Dispose()
+        {
+            if (this.RoleRepository != null)
             {
-                User user = userRepository.Table.First(u => u.UserName == userName);
-                return (new string[] {user.Role.NameRole});
+                this.RoleRepository.Dispose();
+            }
+            if (this.UserRepository != null)
+            {
+                this.UserRepository.Dispose();
             }
         }
     }

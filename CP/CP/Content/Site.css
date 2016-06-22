@@ -1,15 +1,93 @@
-﻿.log {
-    text-align: right;
-    color: blue;
-}
-.menu {
+﻿ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
     background-color: darkgray;
+    width: auto;
 }
-body {
 
+li.navbar-left {
+    float: left;
 }
-footer {
-    position: absolute;
+    li.navbar-left a {
+        display: inline-block;
+        color: white;
+        text-align: center;
+        padding: 14px 10px;
+        text-decoration: none;
+    }
+
+li.navbar-right {
+    float: right;
+}
+
+    li.navbar-right a {
+        display: inline-block;
+        color: white;
+        text-align: center;
+        padding: 14px 5px;
+        text-decoration: none;
+    }
+
+li a:hover:not(#userName) {
+    background-color: #111;
+    border-radius: 10px;
+}
+
+div.ViewImage {
+    padding: 5% 35%;
+    position: fixed;
+}
+
+div.Auth {
+    text-align: center;
+    padding: 20px;
+    margin: 15% 0 0 43%;
+    border: 5px solid black;
+    border-radius: 30px;
+    border-style: double;
+    display: inline-block;
+}
+
+div.field-label {
+    font-family: cursive;
+    text-align: left;
+    margin: 5px 0 5px 0;
+}
+
+div.field-edit input {
+    border-top-style: hidden;
+    border-left-style: hidden;
+    border-right-style: hidden;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-color: black;
+}
+
+    div.field-edit input:focus {
+        background: darkgray;
+        border: 2px solid black;
+        border-radius: 30px;
+        outline: none;
+    }
+
+input.buttonAuth {
+    float: left;
+    margin: 10px 0 0 0;
+    border-radius: 15px;
+    font-family: monospace;
+    background-color: white;
+    border-style: double;
+    border-color: black;
+    outline: none;
+}
+    input.buttonAuth:hover {
+        background-color: orangered;
+    }
+
+    footer {
+    position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;

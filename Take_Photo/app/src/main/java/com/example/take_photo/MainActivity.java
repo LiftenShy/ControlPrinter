@@ -67,11 +67,11 @@ public class MainActivity extends AppCompatActivity {
 
         //"http://controlprinter.apphb.com/Home/IndexPost"
 
-        final File f = new File(getFilesDir(), "pic.jpg");
+        final File f = new File(getFilesDir(), "pic.png");
         //Convert bitmap to byte array
         ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
         Bitmap bitmap = (Bitmap) data.getExtras().get("data");
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 0, byteStream);
+        bitmap.compress(Bitmap.CompressFormat.PNG, 0, byteStream);
         final byte[] bitmapdata = byteStream.toByteArray();
 
         //write the bytes in file
@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
         new Thread(new Runnable() {
             String boundary =  "*****";
             String attachmentName = "fileBase";
-            String attachmentFileName = "pic.jpeg";
+            String attachmentFileName = "pic.png";
             String crlf = "\r\n";
             String twoHyphens = "--";
             public void run() {
@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
 
                 HttpURLConnection conn = null;
                 try {
-                    URL url = new URL("http://controlprinter.apphb.com/Home/IndexPost");
+                    URL url = new URL("http://controlprinter.apphb.com/Home/HomePagePost");
                     conn = (HttpURLConnection) url.openConnection();
                     conn.setUseCaches(false);
                     conn.setDoOutput(true);
@@ -136,6 +136,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     responseStreamReader.close();
                     String response = stringBuilder.toString();
+
                     responseStream.close();
                     conn.disconnect();
 

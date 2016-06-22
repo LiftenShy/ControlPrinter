@@ -1,16 +1,18 @@
 ﻿using System;
 using System.Web.Security;
 using CP.Business;
+using Microsoft.Practices.Unity;
 
 namespace CP.Security
 {
     public class CustomMembershipProvider : MembershipProvider
     {
-        private IUserService userService = new UserService();
+        [Dependency]
+        public IUserService UserService { get; set; }
 
         public override bool ValidateUser(string username, string password)
         {
-            return this.userService.ValidateUser(username, password);
+            return this.UserService.ValidateUser(username, password);
 
         }
 
@@ -21,7 +23,7 @@ namespace CP.Security
 
         public override MembershipUser GetUser(string userName, bool userIsOnline)
         {
-            var user = this.userService.GetUser(userName);
+            var user = this.UserService.GetUser(userName);
             if (user == null)
             {
                 return null;
@@ -141,6 +143,14 @@ namespace CP.Security
         public override void UpdateUser(MembershipUser user)
         {
             throw new NotImplementedException();
+        }
+
+        ~CustomMembershipProvider()
+        {
+            if (this.UserService != null)
+            {
+                this.UserService.Dispose();
+            }
         }
     }
 }
