@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Take_Photo</string>
+    <string name="TPButton">Take photo and send</string>
+</resources>
