@@ -8,7 +8,7 @@ namespace CP.Storage
 {
     public class CloudinaryFileManager : IFileManager
     {
-        private static readonly Account _account = new Account(
+        private static Account _account = new Account(
             ConfigurationManager.AppSettings["CloudinaryDotNet.cloud"], 
             ConfigurationManager.AppSettings["CloudinaryDotNet.apiKey"], 
             ConfigurationManager.AppSettings["CloudinaryDotNet.apiSecret"]);
@@ -36,7 +36,7 @@ namespace CP.Storage
 
         public String GetURI(string fileName)
         {
-            return this._cloudinary.Api.UrlImgUp.Transform(new Transformation().Width(400).Height(400).Crop("fill")).BuildUrl(fileName);
+            return this._cloudinary.Api.UrlImgUp.Transform(new Transformation().Width(800).Height(800).Crop("fill")).BuildUrl(fileName);
         }
     }
 }

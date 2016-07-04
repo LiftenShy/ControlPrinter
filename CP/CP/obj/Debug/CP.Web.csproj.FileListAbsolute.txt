@@ -66,3 +66,5 @@ D:\Diplom\CP\CP\bin\Microsoft.Practices.Unity.xml
 D:\Diplom\CP\CP\bin\Microsoft.Practices.Unity.Configuration.xml
 D:\Diplom\CP\CP\bin\Microsoft.Practices.Unity.Mvc.xml
 D:\Diplom\CP\CP\bin\Microsoft.Practices.Unity.RegistrationByConvention.xml
+D:\Diplom\CP\CP\bin\System.Net.Http.Formatting.dll
+D:\Diplom\CP\CP\bin\System.Net.Http.Formatting.xml
