@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from D:\Diplom\Take_Photo\app\src\main\AndroidManifest.xml:2:1-23:12
+ADDED from D:\Diplom\Take_Photo\app\src\main\AndroidManifest.xml:2:1-28:12
 	xmlns:android
 		ADDED from D:\Diplom\Take_Photo\app\src\main\AndroidManifest.xml:2:11-69
 	package
@@ -13,50 +13,64 @@ ADDED from D:\Diplom\Take_Photo\app\src\main\AndroidManifest.xml:2:1-23:12
 	android:versionCode
 		INJECTED from D:\Diplom\Take_Photo\app\src\main\AndroidManifest.xml
 		INJECTED from D:\Diplom\Take_Photo\app\src\main\AndroidManifest.xml
+uses-permission#android.permission.ACCESS_WIFI_STATE
+ADDED from D:\Diplom\Take_Photo\app\src\main\AndroidManifest.xml:5:5-76
+	android:name
+		ADDED from D:\Diplom\Take_Photo\app\src\main\AndroidManifest.xml:5:22-73
+uses-permission#android.permission.CHANGE_WIFI_STATE
+ADDED from D:\Diplom\Take_Photo\app\src\main\AndroidManifest.xml:6:5-76
+	android:name
+		ADDED from D:\Diplom\Take_Photo\app\src\main\AndroidManifest.xml:6:22-73
 application
-ADDED from D:\Diplom\Take_Photo\app\src\main\AndroidManifest.xml:5:5-18:19
+ADDED from D:\Diplom\Take_Photo\app\src\main\AndroidManifest.xml:8:5-21:19
 MERGED from [com.android.support:appcompat-v7:23.1.1] D:\Diplom\Take_Photo\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.1\AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:support-v4:23.1.1] D:\Diplom\Take_Photo\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\AndroidManifest.xml:22:5-20
 	android:supportsRtl
-		ADDED from D:\Diplom\Take_Photo\app\src\main\AndroidManifest.xml:9:9-35
+		ADDED from D:\Diplom\Take_Photo\app\src\main\AndroidManifest.xml:12:9-35
 	android:label
-		ADDED from D:\Diplom\Take_Photo\app\src\main\AndroidManifest.xml:8:9-41
+		ADDED from D:\Diplom\Take_Photo\app\src\main\AndroidManifest.xml:11:9-41
 	android:allowBackup
-		ADDED from D:\Diplom\Take_Photo\app\src\main\AndroidManifest.xml:6:9-35
+		ADDED from D:\Diplom\Take_Photo\app\src\main\AndroidManifest.xml:9:9-35
 	android:icon
-		ADDED from D:\Diplom\Take_Photo\app\src\main\AndroidManifest.xml:7:9-43
+		ADDED from D:\Diplom\Take_Photo\app\src\main\AndroidManifest.xml:10:9-43
 	android:theme
-		ADDED from D:\Diplom\Take_Photo\app\src\main\AndroidManifest.xml:10:9-40
+		ADDED from D:\Diplom\Take_Photo\app\src\main\AndroidManifest.xml:13:9-40
 activity#com.example.take_photo.MainActivity
-ADDED from D:\Diplom\Take_Photo\app\src\main\AndroidManifest.xml:11:9-17:20
+ADDED from D:\Diplom\Take_Photo\app\src\main\AndroidManifest.xml:14:9-20:20
 	android:name
-		ADDED from D:\Diplom\Take_Photo\app\src\main\AndroidManifest.xml:11:19-47
+		ADDED from D:\Diplom\Take_Photo\app\src\main\AndroidManifest.xml:14:19-47
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
-ADDED from D:\Diplom\Take_Photo\app\src\main\AndroidManifest.xml:12:13-16:29
+ADDED from D:\Diplom\Take_Photo\app\src\main\AndroidManifest.xml:15:13-19:29
 action#android.intent.action.MAIN
-ADDED from D:\Diplom\Take_Photo\app\src\main\AndroidManifest.xml:13:17-69
+ADDED from D:\Diplom\Take_Photo\app\src\main\AndroidManifest.xml:16:17-69
 	android:name
-		ADDED from D:\Diplom\Take_Photo\app\src\main\AndroidManifest.xml:13:25-66
+		ADDED from D:\Diplom\Take_Photo\app\src\main\AndroidManifest.xml:16:25-66
 category#android.intent.category.LAUNCHER
-ADDED from D:\Diplom\Take_Photo\app\src\main\AndroidManifest.xml:15:17-77
+ADDED from D:\Diplom\Take_Photo\app\src\main\AndroidManifest.xml:18:17-77
 	android:name
-		ADDED from D:\Diplom\Take_Photo\app\src\main\AndroidManifest.xml:15:27-74
+		ADDED from D:\Diplom\Take_Photo\app\src\main\AndroidManifest.xml:18:27-74
 uses-permission#android.permission.READ_EXTERNAL_STORAGE
-ADDED from D:\Diplom\Take_Photo\app\src\main\AndroidManifest.xml:19:5-79
+ADDED from D:\Diplom\Take_Photo\app\src\main\AndroidManifest.xml:22:5-79
 	android:name
-		ADDED from D:\Diplom\Take_Photo\app\src\main\AndroidManifest.xml:19:22-77
+		ADDED from D:\Diplom\Take_Photo\app\src\main\AndroidManifest.xml:22:22-77
 uses-permission#android.permission.INTERNET
-ADDED from D:\Diplom\Take_Photo\app\src\main\AndroidManifest.xml:20:5-67
+ADDED from D:\Diplom\Take_Photo\app\src\main\AndroidManifest.xml:23:5-67
 	android:name
-		ADDED from D:\Diplom\Take_Photo\app\src\main\AndroidManifest.xml:20:22-64
+		ADDED from D:\Diplom\Take_Photo\app\src\main\AndroidManifest.xml:23:22-64
 uses-permission#android.permission.CAMERA
-ADDED from D:\Diplom\Take_Photo\app\src\main\AndroidManifest.xml:21:5-65
+ADDED from D:\Diplom\Take_Photo\app\src\main\AndroidManifest.xml:24:5-65
 	android:name
-		ADDED from D:\Diplom\Take_Photo\app\src\main\AndroidManifest.xml:21:22-62
+		ADDED from D:\Diplom\Take_Photo\app\src\main\AndroidManifest.xml:24:22-62
 uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
-ADDED from D:\Diplom\Take_Photo\app\src\main\AndroidManifest.xml:22:5-80
+ADDED from D:\Diplom\Take_Photo\app\src\main\AndroidManifest.xml:25:5-80
 	android:name
-		ADDED from D:\Diplom\Take_Photo\app\src\main\AndroidManifest.xml:22:22-78
+		ADDED from D:\Diplom\Take_Photo\app\src\main\AndroidManifest.xml:25:22-78
+uses-feature#android.hardware.camera
+ADDED from D:\Diplom\Take_Photo\app\src\main\AndroidManifest.xml:26:5-27:35
+	android:required
+		ADDED from D:\Diplom\Take_Photo\app\src\main\AndroidManifest.xml:27:9-32
+	android:name
+		ADDED from D:\Diplom\Take_Photo\app\src\main\AndroidManifest.xml:26:19-57
 uses-sdk
 INJECTED from D:\Diplom\Take_Photo\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 MERGED from [com.android.support:appcompat-v7:23.1.1] D:\Diplom\Take_Photo\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.1\AndroidManifest.xml:20:5-43
