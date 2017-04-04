@@ -16,8 +16,9 @@ import java.net.URL;
 
 public class OperationWithImage {
 
-    static void sendImage(byte[] image) throws IOException {
 
+
+    static void sendImage(byte[] image) throws IOException {
         String boundary = "*****";
         String attachmentName = "fileBase";
         String attachmentFileName = "pic.png";
@@ -88,76 +89,4 @@ public class OperationWithImage {
             e.printStackTrace();
         }
     }
-
-    /*public static Bitmap ConvertToBinaryImage(Bitmap image, int threshold) {
-
-        int width = image.getWidth();
-        int height = image.getHeight();
-        int size = width * height;
-
-        //Получаем матрицу пикселей изображения
-        int[] pixels = new int[size];
-        image.getPixels(pixels, 0, width, 0, 0, width, height);
-        image.recycle();
-
-        //Проходим по всем пикселям в матрице, выполняя перевод в полутоновое изображение и бинаризацию по порогу
-        for (int i = 0; i < size; i++) {
-            int color = pixels[i];
-            int r = Color.red(color);
-            int g = Color.green(color);
-            int b = Color.blue(color);
-            double luminance = (0.299 * r + 0.0f + 0.587 * g + 0.0f + 0.114 * b + 0.0f);
-            pixels[i] = luminance > threshold ? Color.WHITE : Color.BLACK;
-        }
-        return Bitmap.createBitmap(pixels,width,height,image.getConfig());
-    }
-
-    public static Bitmap FilterLaplasiana(Bitmap image) {
-        Bitmap bitmap = image.copy(image.getConfig(),true);
-        int color, r, g, b;
-        int summRGB=0;//, summG=0, summB=0;
-
-        /*int[,] mask = new int[3, 3] { { 1, 1, 1 },
-            { 1, -8, 1 },
-            { 1, 1, 1 } };
-
-        //int[,] mask = new int[3, 3] { { 0, 1, 0 }, { 1, -4, 1 }, { 0, 1, 0 } };
-        //int[,] mask = new int[3, 3] { { 0, -1, 0 }, { -1, 5, -1 }, { 0, -1, 0 } };
-        Bitmap old = new Bitmap(bmp);
-        for(int x = 1; x < bmp.Size.Width - 1; x++)
-        {
-            for(int y = 1; y < bmp.Size.Height - 1; y++)
-            {
-                int tmp = 0;
-                int q = 0;
-                for(int i = x - 1; i <= x+1; i++)
-                {
-                    int w = 0;
-                    for(int j = y -1; j <= y+1; j++)
-                    {
-                        tmp = tmp + old.GetPixel(i, j).R * mask[q, w];
-                        w++;
-                    }
-                    q++;
-                }
-                int newColor =  tmp;
-
-                if (newColor > 255)
-                {
-                    newColor = 255;
-                    //MessageBox.Show("255");
-                }
-                else
-                {
-                    if (newColor < 0)
-                    {
-                        newColor = 0;
-                        //MessageBox.Show("0");
-                    }
-                }
-                Color color = Color.FromArgb(newColor, newColor, newColor);
-                bmp.SetPixel(x, y, color);
-
-        return bitmap;
-    }*/
 }

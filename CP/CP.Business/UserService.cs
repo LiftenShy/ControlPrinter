@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using CP.Data;
 using CP.Data.Models;
 
@@ -12,27 +8,27 @@ namespace CP.Business
     {
         public UserService(IRepository<User> userRepository)
         {
-            this.UserRepository = userRepository;
+            UserRepository = userRepository;
         }
 
-        private IRepository<User> UserRepository { get; set; }
+        private IRepository<User> UserRepository { get; }
 
         public bool ValidateUser(string userName, string password)
         {
-                return this.UserRepository.Table.Any(u => u.UserName == userName && u.Password == password);
+                return UserRepository.Table.Any(u => u.UserName == userName && u.Password == password);
         }
 
         public User GetUser(string userName)
         {
-                return this.UserRepository.Table.FirstOrDefault(f => f.UserName == userName);
+                return UserRepository.Table.FirstOrDefault(f => f.UserName == userName);
         }
 
         public bool AddUser(User user)
         {
-            if (!this.UserRepository.Table.Any(u => u.UserName == user.UserName))
+            if (!UserRepository.Table.Any(u => u.UserName == user.UserName))
             {
                 User item = new User {UserName = user.UserName, Password = user.Password, RoleId = 1};
-                this.UserRepository.Insert(item);
+                UserRepository.Insert(item);
                 return true;
             }
             else
@@ -43,9 +39,9 @@ namespace CP.Business
 
         public void Dispose()
         {
-            if (this.UserRepository != null)
+            if (UserRepository != null)
             {
-                this.UserRepository.Dispose();
+                UserRepository.Dispose();
             }
         }
     }

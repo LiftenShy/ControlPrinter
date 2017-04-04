@@ -12,7 +12,7 @@ namespace CP.Security
 
         public override bool ValidateUser(string username, string password)
         {
-            return this.UserService.ValidateUser(username, password);
+            return UserService.ValidateUser(username, password);
 
         }
 
@@ -23,12 +23,12 @@ namespace CP.Security
 
         public override MembershipUser GetUser(string userName, bool userIsOnline)
         {
-            var user = this.UserService.GetUser(userName);
+            var user = UserService.GetUser(userName);
             if (user == null)
             {
                 return null;
             }
-            return new MembershipUser("MyMembershipProvider", user.UserName, null, null, null, null, 
+            return new MembershipUser("MyMembershipProvider", user.UserName, null, null, null, null,
                 false, false, DateTime.MinValue, DateTime.MinValue, DateTime.MinValue, DateTime.MinValue, DateTime.MinValue);
         }
 

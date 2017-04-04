@@ -16,7 +16,7 @@
 }
 @if (Model != null)
 {
-    <div class="ViewImage">
-        <img src="@Url.Content(Model.FilePath)" alt="Screen" />
-    </div>
+    var base64String = Convert.ToBase64String(Model.Images[0].Bytes);
+    var imgSrc = String.Format($"data:image/png;base64,{base64String}");
+    <img src="@imgSrc"/>
 }
