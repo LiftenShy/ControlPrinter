@@ -1,8 +1,10 @@
-﻿namespace CP.Web.Models
+﻿
+namespace CP.Web.Models
 {
     public class ImageModel
     {
-        public string FileName { get; set; }
-        public string FilePath { get; set; }
+        public string ImgUri { get; set; }
+        public string StaticImgUri { get; set; }
+        public string ResultImgUri { get; set; }
     }
 }

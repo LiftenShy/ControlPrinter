@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CP.Web", "CP\CP.Web.csproj", "{4125F4F6-D0F6-4E58-A40C-9721E452F2B5}"
 EndProject
@@ -14,6 +14,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CP.Storage", "CP.Storage\CP.Storage.csproj", "{BB6EAE8F-2D6A-4E61-905C-1029D98D5044}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CP.DependencyResolver", "CP.DependencyResolver\CP.DependencyResolver.csproj", "{D50D40BA-CEBE-4042-A763-1809A267934E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CP.CSImageService", "CP.CSImageService\CP.CSImageService.csproj", "{81C81F6A-253E-4D05-A579-8174FF3BB57D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{D50D40BA-CEBE-4042-A763-1809A267934E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D50D40BA-CEBE-4042-A763-1809A267934E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D50D40BA-CEBE-4042-A763-1809A267934E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81C81F6A-253E-4D05-A579-8174FF3BB57D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81C81F6A-253E-4D05-A579-8174FF3BB57D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81C81F6A-253E-4D05-A579-8174FF3BB57D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81C81F6A-253E-4D05-A579-8174FF3BB57D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

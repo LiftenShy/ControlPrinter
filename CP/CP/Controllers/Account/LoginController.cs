@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 using System.Web.Security;
-using CP.Business;
+using CP.Business.Abstract;
 using CP.Data.Models;
 using CP.Web.Models;
 using Microsoft.Practices.Unity;
@@ -15,7 +15,7 @@ namespace CP.Web.Controllers.Account
 
         public ActionResult Login()
         {
-            return this.View();
+            return View();
         }
 
         public ActionResult LoginPost(LoginModel model)
@@ -39,12 +39,12 @@ namespace CP.Web.Controllers.Account
 
         public ActionResult RegistrationPost(LoginModel user)
         {
-            if (this.UserService.AddUser(new User {UserName = user.UserName, Password = user.Password, RoleId = 1}))
+            if (UserService.AddUser(new User {UserName = user.UserName, Password = user.Password, RoleId = 1}))
             {
-                return this.RedirectToAction("HomePage","Home");
+                return RedirectToAction("HomePage","Home");
             }
-            this.ModelState.AddModelError(string.Empty, "This name already use, choose another name");
-            return this.View("Registration");
+            ModelState.AddModelError(string.Empty, "This name already use, choose another name");
+            return View("Registration");
         }
 
         public void LoginOut()

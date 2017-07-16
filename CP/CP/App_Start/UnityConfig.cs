@@ -8,7 +8,7 @@ using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.Mvc;
 using InjectionProperty = Microsoft.Practices.Unity.InjectionProperty;
 
-namespace CP.Web.App_Start
+namespace CP.Web
 {
     public class UnityConfig : DependencyResolverConfiguration
     {

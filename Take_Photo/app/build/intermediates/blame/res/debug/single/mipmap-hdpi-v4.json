@@ -1,5 +1,9 @@
 [
     {
+        "merged": "E:\\Diplom\\Take_Photo\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\ic_launcher.png",
+        "source": "E:\\Diplom\\Take_Photo\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
+    },
+    {
         "merged": "D:\\Diplom\\Take_Photo\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\ic_launcher.png",
         "source": "D:\\Diplom\\Take_Photo\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
     }

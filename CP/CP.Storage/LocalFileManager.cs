@@ -1,17 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Reflection;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Data;
-using System.Net.Mime;
-using CP.Data;
-using CP.Data.Models;
 
 namespace CP.Storage
 {
@@ -42,7 +30,7 @@ namespace CP.Storage
             return File.ReadAllBytes(Path.Combine(this._basePath, fileName));
         }
 
-        public String GetURI(string fileName)
+        public String GetUri(string fileName)
         {
             return Path.Combine(this._basePath, fileName);
         }

@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Drawing;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using CP.Business;
+using CP.Business.Abstract;
 using CP.Data.Models;
-using CP.Web.Models;
+using CP.Data.ModelTransport;
 using Microsoft.Practices.Unity;
+using CP.Web.Models;
 
 namespace CP.Web.Controllers
 {
@@ -13,29 +16,39 @@ namespace CP.Web.Controllers
         [Dependency]
         public IImageService ImageService { get; set; }
 
+        [Dependency]
+        public IQueueService QueueService { get; set; }
+
         [Authorize(Roles = "user,admin")]
         public ActionResult HomePage()
         {
-            Image img = this.ImageService.GetImage();
-            return this.View("HomePage",new ImageModel {FileName = img.NameImage,
-                                                     FilePath = this.ImageService.GetImageUri(img.NameImage)});
+            return View("HomePage", new ImageModel
+            {
+                ImgUri = ImageService.GetImageUri(ImageService.GetImage().NameImage),
+                ResultImgUri = ImageService.GetImageUri(ImageService.GetResultImage().NameImage),
+                StaticImgUri = ImageService.GetImageUri(ImageService.GetStaticImage().NameImage)
+            });
+        }
+        [AllowAnonymous]
+        [HttpPost]
+        public async Task HomePagePost(HttpPostedFileBase fileBase)
+        {
+            TransportImageModel trImgModel = new TransportImageModel {ImageBytes =new byte[fileBase.ContentLength]};
+            fileBase.InputStream.Read(trImgModel.ImageBytes,0,fileBase.ContentLength);
+            await QueueService.Send(new Uri("rabbitmq://localhost/mq"),trImgModel);
         }
 
         [HttpPost]
-        public ActionResult HomePagePost(HttpPostedFileBase fileBase)
+        public ActionResult StaticImg(HttpPostedFileBase fileBase)
         {
-            Image image = new Image {NameImage = fileBase.FileName, DateLoad = DateTime.Now};
-            this.ImageService.SaveImage(image,fileBase.InputStream);
-            return this.View("HomePage",
-                new ImageModel {FileName = image.NameImage, FilePath = this.ImageService.GetImageUri(image.NameImage)});
+            StaticImage image = new StaticImage { NameImage = fileBase.FileName, DateLoad = DateTime.UtcNow };
+            ImageService.SaveStatisticImage(image, fileBase.InputStream);
+            return RedirectToAction("HomePage");
         }
 
         protected override void Dispose(bool disposing)
         {
-            if (this.ImageService != null)
-            {
-                this.ImageService.Dispose();
-            }
+            ImageService?.Dispose();
             base.Dispose(disposing);
         }
     }

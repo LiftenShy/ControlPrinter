@@ -1,6 +1,7 @@
-﻿using System;
+﻿
+using System;
 
-namespace CP.Business
+namespace CP.Business.Abstract
 {
     public interface IServiceBase : IDisposable
     {
