@@ -14,6 +14,8 @@ namespace CP.Data
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<Image> Images { get; set; }
+        public DbSet<StaticImage> StaticImages { get; set; }
+        public DbSet<ResultImg> ResultImgs { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

@@ -1,7 +1,5 @@
 package com.example.take_photo;
 
-import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.util.Log;
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -16,8 +14,6 @@ import java.net.URL;
 
 public class OperationWithImage {
 
-
-
     static void sendImage(byte[] image) throws IOException {
         String boundary = "*****";
         String attachmentName = "fileBase";
@@ -27,7 +23,8 @@ public class OperationWithImage {
 
         HttpURLConnection conn = null;
         try {
-            URL url = new URL("http://controlprinter.apphb.com/Home/HomePagePost");
+            //URL url = new URL("http://controlprinter.apphb.com/Home/HomePagePost");
+            URL url = new URL("http://172.20.10.2:64416/Home/HomePagePost");
             conn = (HttpURLConnection) url.openConnection();
             conn.setUseCaches(false);
             conn.setDoOutput(true);
@@ -40,7 +37,6 @@ public class OperationWithImage {
 
             DataOutputStream request = new DataOutputStream(
                     conn.getOutputStream());
-
             request.writeBytes(twoHyphens + boundary + crlf);
             request.writeBytes("Content-Disposition: form-data; name=\"" +
                     attachmentName + "\";filename=\"" +

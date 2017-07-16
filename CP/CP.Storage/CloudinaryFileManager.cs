@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Configuration;
 using System.IO;
+using System.Net;
 using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
 
@@ -21,7 +22,7 @@ namespace CP.Storage
 
         public void SaveFile(String fileName, Stream content)
         {
-            ImageUploadParams uploadParams = new ImageUploadParams()
+            ImageUploadParams uploadParams = new ImageUploadParams
             {
                 File = new FileDescription(fileName, content),
                 PublicId = fileName
@@ -31,12 +32,16 @@ namespace CP.Storage
 
         public Byte[] GetFile(String fileName)
         {
-            throw new NotImplementedException();
+            using (WebClient webClient = new WebClient())
+            {
+                return webClient.DownloadData(new Uri(GetUri(fileName)));
+            }
         }
 
-        public String GetURI(string fileName)
+        public String GetUri(string fileName)
         {
-            return this._cloudinary.Api.UrlImgUp.Transform(new Transformation().Width(400).Height(400).Crop("fill")).BuildUrl(fileName);
+            return _cloudinary.Api.UrlImgUp.BuildUrl(fileName);
+            //Transform(new Transformation().Width(400).Height(400).Crop("fill"))
         }
     }
 }

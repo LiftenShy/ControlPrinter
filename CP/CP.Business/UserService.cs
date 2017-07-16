@@ -1,4 +1,5 @@
-﻿using System.Linq;
+using System.Linq;
+using CP.Business.Abstract;
 using CP.Data;
 using CP.Data.Models;
 
@@ -31,18 +32,12 @@ namespace CP.Business
                 UserRepository.Insert(item);
                 return true;
             }
-            else
-            {
-                return false;
-            }
+            return false;
         }
 
         public void Dispose()
         {
-            if (UserRepository != null)
-            {
-                UserRepository.Dispose();
-            }
+            UserRepository?.Dispose();
         }
     }
 }

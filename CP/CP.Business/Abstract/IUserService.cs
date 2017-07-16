@@ -1,6 +1,7 @@
+
 using CP.Data.Models;
 
-namespace CP.Business
+namespace CP.Business.Abstract
 {
     public interface IUserService : IServiceBase
     {

@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 using System.Web.Security;
-using CP.Business;
+using CP.Business.Abstract;
 using CP.Data.Models;
 using CP.Web.Models;
 using Microsoft.Practices.Unity;

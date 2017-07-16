@@ -1,4 +1,5 @@
-namespace CP.Business
+
+namespace CP.Business.Abstract
 {
     public interface IRoleService : IServiceBase
     {

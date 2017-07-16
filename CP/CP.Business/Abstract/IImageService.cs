@@ -1,18 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CP.Data;
+﻿using System.IO;
 using CP.Data.Models;
 
-namespace CP.Business
+namespace CP.Business.Abstract
 {
     public interface IImageService : IServiceBase
     {
         Image GetImage();
+        StaticImage GetStaticImage();
+        ResultImg GetResultImage();
         void SaveImage(Image image,Stream streamImage);
+        void SaveStatisticImage(StaticImage image, Stream imageStream);
+        void SaveResultImage(ResultImg image, Stream imageStream);
         string GetImageUri(string fileName);
+        byte[] GetFile(string fileName);
     }
 }

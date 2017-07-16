@@ -1,5 +1,6 @@
 ﻿using System.Data.Entity;
 using CP.Business;
+using CP.Business.Abstract;
 using CP.Data;
 using CP.Storage;
 using Microsoft.Practices.Unity;
@@ -10,20 +11,21 @@ namespace CP.DependencyResolver
     {
         public DependencyResolverConfiguration()
         {
-            this.Container = new UnityContainer();
-            this.RegisterTypes();
+            Container = new UnityContainer();
+            RegisterTypes();
         }
 
-        public IUnityContainer Container { get; private set; }
+        public IUnityContainer Container { get;}
 
         protected virtual void RegisterTypes()
         {
-            this.Container.RegisterType(typeof(IRepository<>), typeof(EfRepository<>));
-            this.Container.RegisterType<DbContext, ControlPrinterDbContext>();
-            this.Container.RegisterType<IRoleService, RoleService>();
-            this.Container.RegisterType<IUserService, UserService>();
-            this.Container.RegisterType<IFileManager, CloudinaryFileManager>();
-            this.Container.RegisterType<IImageService, ImageService>();
+            Container.RegisterType(typeof(IRepository<>), typeof(EfRepository<>));
+            Container.RegisterType<DbContext, ControlPrinterDbContext>();
+            Container.RegisterType<IRoleService, RoleService>();
+            Container.RegisterType<IUserService, UserService>();
+            Container.RegisterType<IFileManager, CloudinaryFileManager>();
+            Container.RegisterType<IImageService, ImageService>();
+            Container.RegisterType<IQueueService,QueueService>();
         }
     }
 }

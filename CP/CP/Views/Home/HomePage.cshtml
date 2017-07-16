@@ -4,19 +4,28 @@
 }
 @if (User.IsInRole("admin"))
 {
-    using (@Html.BeginForm("HomePagePost", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    using (Html.BeginForm("StaticImg", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         <div>
-            <input type="file" name="fileBase"/>
+            <input type="file" name="fileBase" />
         </div>
         <div>
-            <input type="submit" value="Take photo" />
+            <input type="submit" value="User image send" />
         </div>
     }
 }
 @if (Model != null)
 {
-    var base64String = Convert.ToBase64String(Model.Images[0].Bytes);
-    var imgSrc = String.Format($"data:image/png;base64,{base64String}");
-    <img src="@imgSrc"/>
+    if(Model.StaticImgUri != null)
+    {
+        <img src="@Url.Content(Model.StaticImgUri)" height="100" width="100"/>
+    }
+    if (Model.ImgUri != null)
+    {
+        <img src="@Url.Content(Model.ImgUri)" height="100" width="100"/>
+    }
+    if (Model.ResultImgUri != null)
+    {
+        <img src="@Url.Content(Model.ResultImgUri)" height="100" width="100"/>
+    }
 }

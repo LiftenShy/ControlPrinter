@@ -8,6 +8,6 @@ namespace CP.Storage
         void SaveFile(String fileName, Byte[] content);
         void SaveFile(String fileName, Stream content);
         Byte[] GetFile(String fileName);
-        String GetURI(string fileName);
+        String GetUri(string fileName);
     }
 }

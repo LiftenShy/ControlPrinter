@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Web.Security;
-using CP.Business;
+using CP.Business.Abstract;
 using Microsoft.Practices.Unity;
 
 namespace CP.Security
