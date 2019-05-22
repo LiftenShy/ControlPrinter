@@ -12,7 +12,7 @@ using CP.Data.ModelTransport;
 using CP.Storage;
 using MassTransit;
 using Serilog;
-using Microsoft.Practices.Unity;
+using Unity;
 
 namespace CP.CSImageService
 {

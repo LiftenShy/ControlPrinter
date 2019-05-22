@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.645
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControlPrinter", "ControlPrinter\ControlPrinter.csproj", "{47A29A58-429C-4FF8-9FC6-7AD415D2C4D4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScreenshotService", "ScreenshotService\ScreenshotService.csproj", "{29D2F3ED-C919-4D55-AC34-A29DDEAFE0E7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{47A29A58-429C-4FF8-9FC6-7AD415D2C4D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47A29A58-429C-4FF8-9FC6-7AD415D2C4D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47A29A58-429C-4FF8-9FC6-7AD415D2C4D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47A29A58-429C-4FF8-9FC6-7AD415D2C4D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29D2F3ED-C919-4D55-AC34-A29DDEAFE0E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29D2F3ED-C919-4D55-AC34-A29DDEAFE0E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29D2F3ED-C919-4D55-AC34-A29DDEAFE0E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29D2F3ED-C919-4D55-AC34-A29DDEAFE0E7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4CB5928B-194F-4970-B5CE-FDC9B9E19ED5}
+	EndGlobalSection
+EndGlobal

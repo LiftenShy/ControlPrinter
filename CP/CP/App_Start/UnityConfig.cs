@@ -1,64 +1,47 @@
-﻿using System;
-using System.Linq;
-using System.Web.Mvc;
-using System.Web.Security;
-using CP.DependencyResolver;
-using CP.Security;
-using Microsoft.Practices.Unity;
-using Microsoft.Practices.Unity.Mvc;
-using InjectionProperty = Microsoft.Practices.Unity.InjectionProperty;
+using System;
+
+using Unity;
 
 namespace CP.Web
 {
-    public class UnityConfig : DependencyResolverConfiguration
+    /// <summary>
+    /// Specifies the Unity configuration for the main container.
+    /// </summary>
+    public static class UnityConfig
     {
-        /// <summary>
-        /// Stores flag, whether Initialize method is already invoked or not.
-        /// </summary>
-        private static Boolean _isInitialized = false;
+        #region Unity Container
+        private static Lazy<IUnityContainer> container =
+          new Lazy<IUnityContainer>(() =>
+          {
+              var container = new UnityContainer();
+              RegisterTypes(container);
+              return container;
+          });
 
         /// <summary>
-        /// Sunchronisation routine object.
+        /// Configured Unity Container.
         /// </summary>
-        private static readonly Object _syncObject = new Object();
+        public static IUnityContainer Container => container.Value;
+        #endregion
 
         /// <summary>
-        /// Gets the instance.
+        /// Registers the type mappings with the Unity container.
         /// </summary>
-        /// <value>
-        /// The instance.
-        /// </value>
-        public static DependencyResolverConfiguration Instance { get; private set; }
-
-        /// <summary>
-        /// Initializes this instance.
-        /// </summary>
-        public static void Initialize()
+        /// <param name="container">The unity container to configure.</param>
+        /// <remarks>
+        /// There is no need to register concrete types such as controllers or
+        /// API controllers (unless you want to change the defaults), as Unity
+        /// allows resolving a concrete type even if it was not previously
+        /// registered.
+        /// </remarks>
+        public static void RegisterTypes(IUnityContainer container)
         {
-            lock (_syncObject)
-            {
-                if (!_isInitialized)
-                {
-                    _isInitialized = true;
-                    Instance = new UnityConfig();
-                    System.Web.Mvc.DependencyResolver.SetResolver(new UnityDependencyResolver(Instance.Container));
-                    FilterProviders.Providers.Remove(FilterProviders.Providers.OfType<FilterAttributeFilterProvider>().First());
-                    FilterProviders.Providers.Add(new UnityFilterAttributeFilterProvider(Instance.Container));
-                }
-            }
-        }
+            // NOTE: To load from web.config uncomment the line below.
+            // Make sure to add a Unity.Configuration to the using statements.
+            // container.LoadConfiguration();
 
-        protected override void RegisterTypes()
-        {
-            base.RegisterTypes();
-            this.Container.RegisterType<MembershipProvider, CustomMembershipProvider>(
-                new InjectionProperty("UserService"));
-
-            this.Container.RegisterType<RoleProvider, CustomRoleProvider>(
-                new InjectionProperty("RoleService"));
-
-            this.Container.BuildUp(Membership.Provider);
-            this.Container.BuildUp(Roles.Provider);
+            // TODO: Register your type's mappings here.
+            // container.RegisterType<IProductRepository, ProductRepository>();
         }
     }
 }

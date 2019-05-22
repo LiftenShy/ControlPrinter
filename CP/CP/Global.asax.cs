@@ -11,7 +11,6 @@ namespace CP.Web
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            UnityConfig.Initialize();
         }
     }
 }

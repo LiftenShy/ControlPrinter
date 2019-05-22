@@ -1,13 +1,12 @@
 ﻿using System;
-using System.Drawing;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using CP.Business.Abstract;
 using CP.Data.Models;
 using CP.Data.ModelTransport;
-using Microsoft.Practices.Unity;
 using CP.Web.Models;
+using Unity;
 
 namespace CP.Web.Controllers
 {

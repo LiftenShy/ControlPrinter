@@ -2,7 +2,7 @@
 using System.Web.Security;
 using CP.Business;
 using CP.Business.Abstract;
-using Microsoft.Practices.Unity;
+using Unity;
 
 namespace CP.Security
 {

@@ -10,9 +10,9 @@ using System.Data.Entity;
 using CP.Storage;
 using GreenPipes;
 using MassTransit;
-using Microsoft.Practices.Unity;
 using Serilog;
 using Topshelf;
+using Unity;
 
 namespace CP.CSImageService
 {

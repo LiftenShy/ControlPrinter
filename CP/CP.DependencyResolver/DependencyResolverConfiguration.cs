@@ -3,7 +3,7 @@ using CP.Business;
 using CP.Business.Abstract;
 using CP.Data;
 using CP.Storage;
-using Microsoft.Practices.Unity;
+using Unity;
 
 namespace CP.DependencyResolver
 {
