@@ -36,7 +36,6 @@ namespace ScreenshotService.Services.Implements
                 snapshot.Save($@".\{fileName}", ImageFormat.Png);
 
                 _capture.Release();
-                _camera.Abort();
 
                 return fileName;
             }

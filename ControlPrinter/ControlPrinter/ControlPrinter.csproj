@@ -5,12 +5,24 @@
     <UserSecretsId>aspnet-ControlPrinter-9CD1AF29-7AF3-49C9-A280-E6B2976B3EC5</UserSecretsId>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20190523124232_Init.cs" />
+    <Compile Remove="Migrations\20190523124232_Init.Designer.cs" />
+  </ItemGroup>
 
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.2.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.7.9" />
     <PackageReference Include="RabbitMQ.Client" Version="5.1.0" />
   </ItemGroup>

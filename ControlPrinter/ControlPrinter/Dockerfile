@@ -5,14 +5,14 @@ EXPOSE 443
 
 FROM microsoft/dotnet:2.2-sdk AS build
 WORKDIR /src
-COPY ["ControlPrinter/ControlPrinter.csproj", "ControlPrinter/"]
-RUN dotnet restore "ControlPrinter/ControlPrinter.csproj"
+COPY ControlPrinter/ControlPrinter.csproj ControlPrinter/
+RUN dotnet restore ControlPrinter/ControlPrinter.csproj
 COPY . .
-WORKDIR "/src/ControlPrinter"
-RUN dotnet build "ControlPrinter.csproj" -c Release -o /app
+WORKDIR /src/ControlPrinter
+RUN dotnet build ControlPrinter.csproj -c Release -o /app
 
 FROM build AS publish
-RUN dotnet publish "ControlPrinter.csproj" -c Release -o /app
+RUN dotnet publish ControlPrinter.csproj -c Release -o /app
 
 FROM base AS final
 WORKDIR /app

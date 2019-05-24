@@ -1,12 +1,8 @@
-﻿using System;
-using System.Drawing;
+﻿using System.Drawing;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
 using OpenCvSharp;
 using RabbitMQ.Client;
-using ScreenshotService.Services.Abstraction;
-using ScreenshotService.Services.Implements;
 
 namespace ScreenshotService
 {
@@ -17,25 +13,34 @@ namespace ScreenshotService
         static void Main(string[] args)
         {
             //Take photo
-            IPictureService picture = new PictureService();
-            var fileName = picture.TakePicture();
+            //IPictureService picture = new PictureService();
+            //var fileName = picture.TakePicture();
             
             //Process photo
 
-            Mat src = new Mat(fileName, ImreadModes.Grayscale);
-            Mat dst = new Mat();
+            //Mat src = new Mat(@"./10f93c15-3b5d-4449-af0a-ec8e3b0ef655.png", ImreadModes.Grayscale);
+            //Mat src2 = new Mat(@"./1.png", ImreadModes.Grayscale);
+            //Mat dst = new Mat();
+            //Mat srcDst = new Mat();
 
-            Cv2.Canny(src, dst, 50, 200);
-            using (new Window("src image", src))
+            //Cv2.Canny(src, dst, 50, 200);
+            //Cv2.Canny(src2, srcDst, 50, 200);
+
+            //Mat result = new Mat();
+
+            //Cv2.Subtract(dst, srcDst, result);
+
+            /*using (new Window("srcDst image", srcDst))
             using (new Window("dst image", dst))
+            using (new Window("result image", result))
             {
                 Cv2.WaitKey();
-            }
+            }*/
 
-            Stream stream = new MemoryStream(dst.ToBytes());
+            //Stream stream = new MemoryStream(dst.ToBytes());
 
             //Send photo
-            SendPicture(Image.FromStream(stream));
+            //SendPicture(Image.FromStream(stream));
         }
 
         static void SendPicture(Image image)

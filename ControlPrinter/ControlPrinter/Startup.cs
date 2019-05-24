@@ -7,10 +7,10 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ControlPrinter.Data;
+using ControlPrinter.Models;
 using ControlPrinter.Service.Abstract;
 using ControlPrinter.Service.Implement;
 using Microsoft.Extensions.Configuration;
@@ -40,13 +40,26 @@ namespace ControlPrinter
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>()
+            services.AddDefaultIdentity<UserModel>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.Configure<IdentityOptions>(options =>
+            {
+                // Default Password settings.
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequiredLength = 1;
+                options.Password.RequiredUniqueChars = 0;
+            });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddSingleton<IImageService, ImageService>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped(typeof(IEfRepository<>), typeof(EfRepository<>));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -70,7 +83,7 @@ namespace ControlPrinter
 
             app.UseAuthentication();
 
-            new ImageService("localhost").ReceiveImage();
+            //new ImageService("localhost").ReceiveImage();
 
             app.UseMvc(routes =>
             {

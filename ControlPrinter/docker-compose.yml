@@ -1,0 +1,29 @@
+version: '3.4'
+
+services:
+ 
+  db:
+    image: "mcr.microsoft.com/mssql/server:2017-latest"
+    ports:
+      - "1433:1433"
+    environment:
+      SA_PASSWORD: "SqlDevOps2019"
+      ACCEPT_EULA: "Y"
+      name: "pidr"
+    
+  
+  controlprinter:
+    image: ${DOCKER_REGISTRY-}controlprinter
+    build:
+      context: .
+      dockerfile: ControlPrinter/Dockerfile
+    depends_on:
+      - db
+
+  screenshotservice:
+    image: ${DOCKER_REGISTRY-}screenshotservice
+    build:
+      context: .
+      dockerfile: ScreenshotService/Dockerfile
+    depends_on:
+      - db

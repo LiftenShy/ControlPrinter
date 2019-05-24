@@ -1,4 +1,5 @@
-﻿@{
+﻿@model UserViewModel
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -7,6 +8,16 @@
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
     @if (User.Identity.IsAuthenticated)
     {
-        <div>Welcome authorize user</div>
+        <div class="image-container">
+            <div class="image-wrapper">
+                <img src="@Model.OriginalImageName" />
+            </div>
+            <div class="image-wrapper">
+                <img src="@Model.ProcessedImage" />
+            </div>
+            <div class="image-wrapper">
+                <img src="@Model.DifferentBetweenImageName" />
+            </div>
+        </div>
     }
 </div>
