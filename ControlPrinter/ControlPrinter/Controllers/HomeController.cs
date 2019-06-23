@@ -8,10 +8,15 @@ namespace ControlPrinter.Controllers
     public class HomeController : Controller
     {
         private readonly IUserService _userService;
+        private readonly IStorageService _storageService;
+        private IImageService _imageService;
 
-        public HomeController(IUserService userService)
+        public HomeController(IUserService userService, IStorageService storageService, IImageService imageService)
         {
             _userService = userService;
+            _storageService = storageService;
+            _imageService = imageService;
+            _imageService.ReceiveImage();
         }
 
         public IActionResult Index()
@@ -20,10 +25,10 @@ namespace ControlPrinter.Controllers
 
             if (User.Identity.IsAuthenticated)
             {
-                var userModel = _userService.GetByName(User.Identity.Name);
-                userViewModel.ProcessedImage = userModel.ProcessedImage;
-                userViewModel.OriginalImageName = userModel.OriginalImageName;
-                userViewModel.DifferentBetweenImageName = userModel.DifferentBetweenImageName;
+                var image = _storageService.LoadPicture();
+                userViewModel.ProcessedImage = image.ProcessedImagePath;
+                userViewModel.OriginalImageName = image.OriginalImagePath;
+                userViewModel.DifferentBetweenImageName = image.ResultImagePath;
 
                 return View(userViewModel);
             }

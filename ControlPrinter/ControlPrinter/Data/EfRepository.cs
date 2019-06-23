@@ -21,6 +21,17 @@ namespace ControlPrinter.Data
             Table = _entities.AsQueryable();
         }
 
+        public void Add(T model)
+        {
+            if (model == null)
+            {
+                throw new ArgumentException($"Model null on add entity: {model}");
+            }
+
+            _entities.Add(model);
+            _dbContext.SaveChanges();
+        }
+
         public void Update(T model)
         {
             if (model == null)

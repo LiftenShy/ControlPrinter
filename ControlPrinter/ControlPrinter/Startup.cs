@@ -59,6 +59,7 @@ namespace ControlPrinter
 
             services.AddSingleton<IImageService, ImageService>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IStorageService, StorageService>();
             services.AddScoped(typeof(IEfRepository<>), typeof(EfRepository<>));
         }
 
@@ -82,8 +83,6 @@ namespace ControlPrinter
             app.UseCookiePolicy();
 
             app.UseAuthentication();
-
-            //new ImageService("localhost").ReceiveImage();
 
             app.UseMvc(routes =>
             {

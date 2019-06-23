@@ -10,6 +10,8 @@ namespace ControlPrinter.Data
     {
         IQueryable<T> Table { get; set; }
 
+        void Add(T model);
+
         void Update(T model);
     }
 }
