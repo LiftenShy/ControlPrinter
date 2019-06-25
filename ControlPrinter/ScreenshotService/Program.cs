@@ -7,6 +7,8 @@ using RabbitMQ.Client;
 using System;
 using System.Drawing.Imaging;
 using System.Text;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace ScreenshotService
 {
@@ -58,24 +60,32 @@ namespace ScreenshotService
 
             //Send photo
             SendPicture(messageBusModel);
+
         }
 
         static void SendPicture(ImageServiceModel image)
         {
-            var factory = new ConnectionFactory() { HostName = "localhost" };
+            var factory = new ConnectionFactory() { HostName = "localhost", DispatchConsumersAsync = true };
             using (var connection = factory.CreateConnection())
             using (var channel = connection.CreateModel())
             {
-                channel.ExchangeDeclare("CP", ExchangeType.Direct);
-                channel.QueueDeclare(QUEUENAME, false, false, false, null);
-                channel.QueueBind(QUEUENAME, "CP", "", null);
+                //channel.ExchangeDeclare("CP", ExchangeType.Direct);
+                channel.QueueDeclare(QUEUENAME, true, false, false, null);
+                //channel.QueueBind(QUEUENAME, "CP", "", null);
+
+                var props = channel.CreateBasicProperties();
 
                 var bf = new BinaryFormatter();
                 using (var ms = new MemoryStream())
                 {
                   bf.Serialize(ms, image);
-                  
-                  channel.BasicPublish("CP", "", null, ms.ToArray());
+
+                    while (true)
+                    {
+                        channel.BasicPublish("", QUEUENAME, props, ms.ToArray());
+
+                        Thread.Sleep(10000);
+                    }
                 }
                 
             }

@@ -57,7 +57,7 @@ namespace ControlPrinter
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            services.AddSingleton<IImageService, ImageService>();
+            services.AddScoped<IImageService, ImageService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IStorageService, StorageService>();
             services.AddScoped(typeof(IEfRepository<>), typeof(EfRepository<>));
@@ -81,6 +81,7 @@ namespace ControlPrinter
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+            app.UseStaticFiles();
 
             app.UseAuthentication();
 
